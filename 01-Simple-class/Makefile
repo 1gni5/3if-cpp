@@ -13,6 +13,7 @@ $(EXEC): $(OBJS)
 
 test:
 	./tests/test.sh tests/$(TEST) || true
+	rm tests/Test*/TU*
 
 clean:
 	rm -f *.o $(EXEC)
