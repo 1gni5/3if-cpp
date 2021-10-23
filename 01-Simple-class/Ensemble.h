@@ -45,6 +45,12 @@ public:
   
 protected:
   //----------------------------------------------------- Méthodes protégées
+  bool estInclus( int );
+  // Retourne VRAI si la valeur est inclus dans `elements`
+  // retourne FAUX sinon.
+
+  int* trie();
+  // Retourne l'ensemble trié.
   
   //----------------------------------------------------- Attributs protégés
   unsigned int cardinaliteCourante;
