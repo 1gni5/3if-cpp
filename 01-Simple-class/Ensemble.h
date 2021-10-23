@@ -40,6 +40,8 @@ public:
 
   crduAjouter Ajouter ( int aAjouter );
 
+  unsigned int Ajuster ( int delta );
+
 //-------------------------------------------- Constructeurs - destructeur
   Ensemble ( unsigned int cardMax = CARDINALITE_MAX);
   
@@ -57,7 +59,10 @@ protected:
 
   int* trie() const;
   // Retourne l'ensemble trié.
-  
+
+  int* exportEnsemble ( void ) const;
+  // Exporte les valeurs de l'ensemble sous forme de tableau d'entiers.
+
   //----------------------------------------------------- Attributs protégés
   unsigned int cardinaliteCourante;
   unsigned int cardinaliteMaximum;

@@ -81,6 +81,26 @@ crduAjouter Ensemble::Ajouter ( int aAjouter ) {
 
 }//----- Fin de Ajouter
 
+
+unsigned int Ensemble::Ajuster ( int delta ) {
+
+  if (delta == 0)
+    return cardinaliteMaximum;
+
+  int* tmp = exportEnsemble();
+  delete [] elements;
+
+  cardinaliteMaximum  = (cardinaliteMaximum + delta >= cardinaliteCourante) ?
+    cardinaliteMaximum + delta : cardinaliteCourante;
+
+  elements = new int [cardinaliteMaximum];
+  for (int i = 0; i < cardinaliteCourante; i++)
+    elements[i] = tmp[i];
+
+  delete [] tmp;
+  return cardinaliteMaximum;
+}//----- Fin de Ajuster
+
 //-------------------------------------------- Constructeurs - destructeur
 //
 
@@ -132,9 +152,7 @@ bool Ensemble::estInclus( int valeur ) const
 
 int* Ensemble::trie ( void ) const {
 
-  int* results = new int [cardinaliteCourante];
-  for (int i = 0; i < cardinaliteCourante; i++)
-    results[i] = elements[i];
+  int* results = exportEnsemble();
 
   if (cardinaliteCourante < 2)
     return results;
@@ -156,6 +174,18 @@ int* Ensemble::trie ( void ) const {
     if (!swapped)
       break;
   }
+
+  return results;
+}
+
+int* Ensemble::exportEnsemble ( void ) const {
+
+  if (cardinaliteCourante < 1)
+    return NULL;
+
+  int* results = new int [cardinaliteCourante];
+  for (int i = 0; i < cardinaliteCourante; i++)
+    results[i] = elements[i];
 
   return results;
 }
