@@ -23,7 +23,7 @@ const string ENDL = "\r\n";
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Ensemble::Afficher ( void ) const {
+void Ensemble::Afficher ( void ) {
   cout << cardinaliteCourante << ENDL;
   cout << cardinaliteMaximum << ENDL;
   cout << "{}" << ENDL;

@@ -30,13 +30,9 @@ class Ensemble
 public:
   //----------------------------------------------------- Méthodes publiques
 
-  void Afficher ( void ) const;
+  void Afficher ( void );
   // Affiche la cardinalité courante, la cardinalité maximum et les 
   // éléments de l'ensemble.
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-
 
 //-------------------------------------------- Constructeurs - destructeur
   Ensemble ( unsigned int cardMax = CARDINALITE_MAX);
