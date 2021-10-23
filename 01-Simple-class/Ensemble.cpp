@@ -18,39 +18,43 @@ using namespace std;
 #include "Ensemble.h"
 
 //------------------------------------------------------------- Constantes
+const string ENDL = "\r\n";
 
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-// type Ensemble::Méthode ( liste des paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
+void Ensemble::Afficher ( void ) const {
+  cout << cardinaliteCourante << ENDL;
+  cout << cardinaliteMaximum << ENDL;
+  cout << "{}" << ENDL;
+} //---- Fin de Afficher
 
 //-------------------------------------------- Constructeurs - destructeur
 //
 
-Ensemble::Ensemble ( unsigned int cardMax = CARDINALITE_MAX)
+Ensemble::Ensemble ( unsigned int cardMax )
+  :cardinaliteCourante{0}, cardinaliteMaximum{cardMax},
+   elements{new int[cardMax]}
 {
-	#ifdef MAP
-    cout << "Appel au constructeur de <Ensemble>" << endl;
-	#endif
+#ifdef MAP
+  cout << "Appel au constructeur de <Ensemble>" << endl;
+#endif
 } //----- Fin de Ensemble
 
 Ensemble::Ensemble ( int*, unsigned int )
 {
-	#ifdef MAP
-    cout << "Appel au constructeur de <Ensemble>" << endl;
-	#endif
+#ifdef MAP
+  cout << "Appel au constructeur de <Ensemble>" << endl;
+#endif
 } //----- Fin de Ensemble
 
 
 Ensemble::~Ensemble ( )
 {
-	#ifdef MAP
-    cout << "Appel au destructeur de <Ensemble>" << endl;
-	#endif
+  delete [] elements;
+#ifdef MAP
+  cout << "Appel au destructeur de <Ensemble>" << endl;
+#endif
 } //----- Fin de ~Ensemble
 
 

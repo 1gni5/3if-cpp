@@ -25,35 +25,35 @@ const unsigned int CARDINALITE_MAX = 5;
 
 class Ensemble
 {
-//----------------------------------------------------------------- PUBLIC
-
+  //----------------------------------------------------------------- PUBLIC
+  
 public:
-//----------------------------------------------------- Méthodes publiques
+  //----------------------------------------------------- Méthodes publiques
 
-	void Afficher ( void ) const;
-    // Affiche la cardinalité courante, la cardinalité maximum et les 
-    // éléments de l'ensemble.
+  void Afficher ( void ) const;
+  // Affiche la cardinalité courante, la cardinalité maximum et les 
+  // éléments de l'ensemble.
 
 
 //------------------------------------------------- Surcharge d'opérateurs
 
 
 //-------------------------------------------- Constructeurs - destructeur
-    Ensemble ( unsigned int );
+  Ensemble ( unsigned int cardMax = CARDINALITE_MAX);
+  
+  Ensemble ( int*, unsigned int );
 
-	Ensemble ( int*, unsigned int );
-
-    virtual ~Ensemble ( );
-
-//------------------------------------------------------------------ PRIVE
-
+  virtual ~Ensemble ( );
+  
+  //------------------------------------------------------------------ PRIVE
+  
 protected:
-//----------------------------------------------------- Méthodes protégées
-
-//----------------------------------------------------- Attributs protégés
-	unsigned int cardinaliteCourante;
-	unsigned int cardinaliteMaximum;
-	int *elements;
+  //----------------------------------------------------- Méthodes protégées
+  
+  //----------------------------------------------------- Attributs protégés
+  unsigned int cardinaliteCourante;
+  unsigned int cardinaliteMaximum;
+  int *elements;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Ensemble>
