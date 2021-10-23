@@ -67,6 +67,20 @@ crduEstInclus Ensemble::EstInclus ( const Ensemble & unEnsemble ) const {
 
 }//---- Fin de EstInclus
 
+
+crduAjouter Ensemble::Ajouter ( int aAjouter ) {
+
+  if (estInclus(aAjouter))
+    return DEJA_PRESENT;
+
+  if (cardinaliteCourante == cardinaliteMaximum)
+    return PLEIN;
+
+  elements[cardinaliteCourante++] = aAjouter;
+  return AJOUTE;
+
+}//----- Fin de Ajouter
+
 //-------------------------------------------- Constructeurs - destructeur
 //
 

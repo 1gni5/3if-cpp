@@ -17,6 +17,7 @@ const unsigned int CARDINALITE_MAX = 5;
 
 //------------------------------------------------------------------ Types
 enum crduEstInclus { NON_INCLUSION, INCLUSION_LARGE, INCLUSION_STRICT };
+enum crduAjouter { DEJA_PRESENT, PLEIN, AJOUTE };
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Ensemble>
@@ -32,17 +33,12 @@ public:
   //----------------------------------------------------- Méthodes publiques
 
   void Afficher ( void );
-  // Affiche la cardinalité courante, la cardinalité maximum et les 
-  // éléments de l'ensemble.
 
   bool EstEgal ( const Ensemble & unEnsemble ) const;
-  // Test l'égalité entre 2 ensembles. Les 2 ensembles sont égaux
-  // si et seulement si leurs `cardinaliteCourante` sont égales.
-  // Et que les éléments de l'un soit strictement inclus dans les
-  // les éléments de l'autre.
 
   crduEstInclus EstInclus ( const Ensemble & unEnsemble ) const;
-  // Test l'inclusion entre 2 ensemble.
+
+  crduAjouter Ajouter ( int aAjouter );
 
 //-------------------------------------------- Constructeurs - destructeur
   Ensemble ( unsigned int cardMax = CARDINALITE_MAX);
