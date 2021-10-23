@@ -34,6 +34,12 @@ public:
   // Affiche la cardinalité courante, la cardinalité maximum et les 
   // éléments de l'ensemble.
 
+  bool EstEgal ( const Ensemble & unEnsemble ) const;
+  // Test l'égalité entre 2 ensembles. Les 2 ensembles sont égaux
+  // si et seulement si leurs `cardinaliteCourante` sont égales.
+  // Et que les éléments de l'un soit strictement inclus dans les
+  // les éléments de l'autre.
+
 //-------------------------------------------- Constructeurs - destructeur
   Ensemble ( unsigned int cardMax = CARDINALITE_MAX);
   
@@ -45,7 +51,7 @@ public:
   
 protected:
   //----------------------------------------------------- Méthodes protégées
-  bool estInclus( int );
+  bool estInclus( int ) const;
   // Retourne VRAI si la valeur est inclus dans `elements`
   // retourne FAUX sinon.
 

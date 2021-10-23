@@ -37,6 +37,21 @@ void Ensemble::Afficher ( void ) {
   delete [] sortedElements;
 } //---- Fin de Afficher
 
+
+bool Ensemble::EstEgal ( const Ensemble & unEnsemble ) const {
+
+  if (cardinaliteCourante != unEnsemble.cardinaliteCourante)
+    return false;
+
+  for (int i = 0; i < cardinaliteCourante; i++) {
+
+    if (!estInclus(unEnsemble.elements[i]))
+      return false;
+  }
+
+  return true;
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 //
 
@@ -75,7 +90,7 @@ Ensemble::~Ensemble ( )
 
 //------------------------------------------------------------------ PRIVE
 //----------------------------------------------------- Méthodes protégées
-bool Ensemble::estInclus( int valeur )
+bool Ensemble::estInclus( int valeur ) const
 {
   for (int index = 0; index < cardinaliteCourante; index++) {
 
