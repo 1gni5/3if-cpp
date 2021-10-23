@@ -101,6 +101,46 @@ unsigned int Ensemble::Ajuster ( int delta ) {
   return cardinaliteMaximum;
 }//----- Fin de Ajuster
 
+bool Ensemble::Retirer ( int element ) {
+
+  if (!estInclus(element)) {
+    Ajuster ( cardinaliteCourante - cardinaliteMaximum );
+    return false;
+  }
+
+  cardinaliteCourante --;
+  for (int i = 0; i < cardinaliteCourante; i++) {
+
+    if (elements[i] == element)
+      swap(elements[i], elements[cardinaliteCourante - 1]);
+  }
+
+  Ajuster ( cardinaliteCourante - cardinaliteMaximum );
+  return true;
+
+}//----- Fin de Retirer
+
+unsigned int Ensemble::Retirer ( const Ensemble & unEnsemble ) {
+
+  unsigned int nbElementConserves = 0;
+  int *tmp = exportEnsemble();
+  
+  for (int i = 0; i < cardinaliteCourante; i++) {
+    
+    if (!unEnsemble.estInclus(elements[i]))
+	tmp[nbElementConserves] = elements[i];
+  }
+
+  unsigned int nbElementRetire = cardinaliteCourante - nbElementConserves;
+  cardinaliteCourante = nbElementConserves;
+
+  for (int i = 0; i < cardinaliteCourante; i++)
+    elements[i] = tmp[i];
+    
+  delete [] tmp;
+  return nbElementRetire;
+}//----- Fin de Retirer
+
 //-------------------------------------------- Constructeurs - destructeur
 //
 
@@ -188,4 +228,10 @@ int* Ensemble::exportEnsemble ( void ) const {
     results[i] = elements[i];
 
   return results;
+}
+
+void swap ( int & a, int & b ) {
+  int tmp = a;
+  a = b;
+  b = tmp;
 }

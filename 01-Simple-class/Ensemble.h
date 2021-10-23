@@ -42,6 +42,10 @@ public:
 
   unsigned int Ajuster ( int delta );
 
+  bool Retirer ( int element );
+
+  unsigned int Retirer ( const Ensemble & unEnsemble );
+
 //-------------------------------------------- Constructeurs - destructeur
   Ensemble ( unsigned int cardMax = CARDINALITE_MAX);
   
