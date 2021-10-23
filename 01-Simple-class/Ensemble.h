@@ -16,6 +16,7 @@
 const unsigned int CARDINALITE_MAX = 5;
 
 //------------------------------------------------------------------ Types
+enum crduEstInclus { NON_INCLUSION, INCLUSION_LARGE, INCLUSION_STRICT };
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Ensemble>
@@ -40,6 +41,9 @@ public:
   // Et que les éléments de l'un soit strictement inclus dans les
   // les éléments de l'autre.
 
+  crduEstInclus EstInclus ( const Ensemble & unEnsemble ) const;
+  // Test l'inclusion entre 2 ensemble.
+
 //-------------------------------------------- Constructeurs - destructeur
   Ensemble ( unsigned int cardMax = CARDINALITE_MAX);
   
@@ -55,7 +59,7 @@ protected:
   // Retourne VRAI si la valeur est inclus dans `elements`
   // retourne FAUX sinon.
 
-  int* trie();
+  int* trie() const;
   // Retourne l'ensemble trié.
   
   //----------------------------------------------------- Attributs protégés

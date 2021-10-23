@@ -50,7 +50,22 @@ bool Ensemble::EstEgal ( const Ensemble & unEnsemble ) const {
   }
 
   return true;
-}
+} //---- Fin de EstEgal
+
+crduEstInclus Ensemble::EstInclus ( const Ensemble & unEnsemble ) const {
+
+  if (EstEgal(unEnsemble))
+    return INCLUSION_LARGE;
+
+  for (int i = 0; i < cardinaliteCourante; i++) {
+
+    if (!unEnsemble.estInclus(elements[i]))
+      return NON_INCLUSION;
+  }
+
+  return INCLUSION_STRICT;
+
+}//---- Fin de EstInclus
 
 //-------------------------------------------- Constructeurs - destructeur
 //
@@ -101,7 +116,7 @@ bool Ensemble::estInclus( int valeur ) const
   return false;
 }
 
-int* Ensemble::trie ( void ) {
+int* Ensemble::trie ( void ) const {
 
   int* results = new int [cardinaliteCourante];
   for (int i = 0; i < cardinaliteCourante; i++)
