@@ -121,24 +121,18 @@ bool Ensemble::Retirer ( int element ) {
 }//----- Fin de Retirer
 
 unsigned int Ensemble::Retirer ( const Ensemble & unEnsemble ) {
+  unsigned int nbElementRetires = 0;
 
-  unsigned int nbElementConserves = 0;
-  int *tmp = exportEnsemble();
-  
   for (int i = 0; i < cardinaliteCourante; i++) {
-    
-    if (!unEnsemble.estInclus(elements[i]))
-	tmp[nbElementConserves] = elements[i];
+
+    if (unEnsemble.estInclus(elements[i])) {
+      swap(elements[i], elements[cardinaliteCourante - (nbElementRetires + 1)]);
+      nbElementRetires++;
+    }
   }
 
-  unsigned int nbElementRetire = cardinaliteCourante - nbElementConserves;
-  cardinaliteCourante = nbElementConserves;
-
-  for (int i = 0; i < cardinaliteCourante; i++)
-    elements[i] = tmp[i];
-    
-  delete [] tmp;
-  return nbElementRetire;
+  cardinaliteCourante -= nbElementRetires;
+  return nbElementRetires;
 }//----- Fin de Retirer
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -204,9 +198,7 @@ int* Ensemble::trie ( void ) const {
     for (int j = 0; j < cardinaliteCourante - (i + 1); j++) {
       
       if (results[j] > results[j+1]) {
-	int tmp = results[j];
-	results[j] = results[j+1];
-	results[j+1] = tmp;
+	swap(results[j], results[j+1]);
 	swapped = true;
       }
     }
