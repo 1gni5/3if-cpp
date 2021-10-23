@@ -11,6 +11,9 @@ debug: $(EXEC)
 $(EXEC): $(OBJS)
 	g++ -o $@ $(OBJS)
 
+test:
+	./tests/test.sh tests/$(TEST) || true
+
 clean:
 	rm -f *.o $(EXEC)
 
