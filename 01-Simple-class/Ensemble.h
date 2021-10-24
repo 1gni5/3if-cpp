@@ -46,6 +46,8 @@ public:
 
   unsigned int Retirer ( const Ensemble & unEnsemble );
 
+  int Reunir ( const Ensemble & unEnsemble );
+
 //-------------------------------------------- Constructeurs - destructeur
   Ensemble ( unsigned int cardMax = CARDINALITE_MAX);
   

@@ -135,6 +135,32 @@ unsigned int Ensemble::Retirer ( const Ensemble & unEnsemble ) {
   return nbElementRetires;
 }//----- Fin de Retirer
 
+
+int Ensemble::Reunir ( const Ensemble & unEnsemble ) {
+
+  bool modified = false;
+  int addedValues = 0;
+
+  // Réunion nulle 
+  if (EstInclus(unEnsemble))
+    return addedValues;
+
+  for (int i = 0; i < unEnsemble.cardinaliteCourante; i++) {
+
+    crduAjouter insertResult;
+    while ((insertResult = Ajouter(unEnsemble.elements[i])) == PLEIN) {
+      Ajuster( 1 );
+      modified = true;
+    }
+
+    if (insertResult == AJOUTE)
+      addedValues++;
+  }
+
+  return (modified) ? -addedValues : addedValues;
+
+}//----- Fin de Reunir
+
 //-------------------------------------------- Constructeurs - destructeur
 //
 
