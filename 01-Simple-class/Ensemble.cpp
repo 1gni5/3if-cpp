@@ -81,7 +81,6 @@ crduAjouter Ensemble::Ajouter ( int aAjouter ) {
 
 }//----- Fin de Ajouter
 
-
 unsigned int Ensemble::Ajuster ( int delta ) {
 
   if (delta == 0)
@@ -102,36 +101,21 @@ unsigned int Ensemble::Ajuster ( int delta ) {
 }//----- Fin de Ajuster
 
 bool Ensemble::Retirer ( int element ) {
-
-  if (!estInclus(element)) {
-    Ajuster ( cardinaliteCourante - cardinaliteMaximum );
-    return false;
-  }
-
-  cardinaliteCourante --;
-  for (int i = 0; i < cardinaliteCourante; i++) {
-
-    if (elements[i] == element)
-      swap(elements[i], elements[cardinaliteCourante - 1]);
-  }
-
-  Ajuster ( cardinaliteCourante - cardinaliteMaximum );
-  return true;
-
+  return retirer ( element, true );
 }//----- Fin de Retirer
 
 unsigned int Ensemble::Retirer ( const Ensemble & unEnsemble ) {
+
+  int* toDelete = unEnsemble.exportEnsemble();
+  unsigned int length = unEnsemble.cardinaliteCourante;
+
   unsigned int nbElementRetires = 0;
+  for (int i = 0; i < length; i++) {
 
-  for (int i = 0; i < cardinaliteCourante; i++) {
-
-    if (unEnsemble.estInclus(elements[i])) {
-      swap(elements[i], elements[cardinaliteCourante - (nbElementRetires + 1)]);
-      nbElementRetires++;
-    }
+    if (retirer ( toDelete[i], false ))
+      ++nbElementRetires;
   }
 
-  cardinaliteCourante -= nbElementRetires;
   return nbElementRetires;
 }//----- Fin de Retirer
 
@@ -160,6 +144,23 @@ int Ensemble::Reunir ( const Ensemble & unEnsemble ) {
   return (modified) ? -addedValues : addedValues;
 
 }//----- Fin de Reunir
+
+
+unsigned int Ensemble::Intersection ( const Ensemble & unEnsemble ) {
+
+  Ensemble toDelete = Ensemble(cardinaliteMaximum);
+  int deletedElements = 0;
+
+  for (int i = 0; i < cardinaliteCourante; i++) {
+
+    if (!unEnsemble.estInclus(elements[i]))
+      toDelete.Ajouter(elements[i]);
+  }
+
+  deletedElements = Retirer(toDelete);
+  Ajuster (cardinaliteCourante - cardinaliteMaximum);
+  return deletedElements;
+}//----- Fin de Intersection
 
 //-------------------------------------------- Constructeurs - destructeur
 //
@@ -247,6 +248,25 @@ int* Ensemble::exportEnsemble ( void ) const {
 
   return results;
 }
+
+bool Ensemble::retirer ( int element, bool ajustement ) {
+
+  bool elementDeleted = false;
+  for (int i = 0; i < cardinaliteCourante; i++) {
+
+    if ((elements[i] == element)) {
+      elementDeleted = true;
+      cardinaliteCourante--;
+      swap ( elements[i], elements[cardinaliteCourante] );
+      break;
+    }
+  }
+
+  if (ajustement)
+    Ajuster ( cardinaliteCourante - cardinaliteMaximum );
+
+  return elementDeleted;
+}  
 
 void swap ( int & a, int & b ) {
   int tmp = a;
