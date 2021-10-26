@@ -27,6 +27,7 @@ void Ensemble::Afficher ( void ) {
   cout << cardinaliteCourante << ENDL;
   cout << cardinaliteMaximum << ENDL;
 
+  // Les éléments sont affichés dans l'ordre
   int* sortedElements = trie();
   
   cout << "{";
@@ -54,6 +55,7 @@ bool Ensemble::EstEgal ( const Ensemble & unEnsemble ) const {
 
 crduEstInclus Ensemble::EstInclus ( const Ensemble & unEnsemble ) const {
 
+  // 2 ensembles égaux sont inclus au sens large
   if (EstEgal(unEnsemble))
     return INCLUSION_LARGE;
 
@@ -76,6 +78,7 @@ crduAjouter Ensemble::Ajouter ( int aAjouter ) {
   if (cardinaliteCourante == cardinaliteMaximum)
     return PLEIN;
 
+  // Ajoute l'élément à la fin et met à jour la cardinalite
   elements[cardinaliteCourante++] = aAjouter;
   return AJOUTE;
 
@@ -83,12 +86,14 @@ crduAjouter Ensemble::Ajouter ( int aAjouter ) {
 
 unsigned int Ensemble::Ajuster ( int delta ) {
 
+  // Rien ne change, économise du temps de calcul
   if (delta == 0)
     return cardinaliteMaximum;
 
   int* tmp = exportEnsemble();
   delete [] elements;
 
+  // Maximum entre nouvelle cardinalite et cardinalite courante
   cardinaliteMaximum  = (cardinaliteMaximum + delta >= cardinaliteCourante) ?
     cardinaliteMaximum + delta : cardinaliteCourante;
 
@@ -106,6 +111,8 @@ bool Ensemble::Retirer ( int element ) {
 
 unsigned int Ensemble::Retirer ( const Ensemble & unEnsemble ) {
 
+  // Le travaille sur une copie est nécessaire si ensemble appelé
+  // et appelant sont le même objet.
   int* toDelete = unEnsemble.exportEnsemble();
   unsigned int length = unEnsemble.cardinaliteCourante;
 
@@ -125,13 +132,14 @@ int Ensemble::Reunir ( const Ensemble & unEnsemble ) {
   bool modified = false;
   int addedValues = 0;
 
-  // Réunion nulle 
+  // Réunion nulle, évite le calcul inutile 
   if (EstInclus(unEnsemble))
     return addedValues;
 
   for (int i = 0; i < unEnsemble.cardinaliteCourante; i++) {
 
-    crduAjouter insertResult;
+    // Ajoute l'élément avec ajustement si besoin
+    crduAjouter insertResult; 
     while ((insertResult = Ajouter(unEnsemble.elements[i])) == PLEIN) {
       Ajuster( 1 );
       modified = true;
@@ -141,8 +149,9 @@ int Ensemble::Reunir ( const Ensemble & unEnsemble ) {
       addedValues++;
   }
 
+  // Si les cardinalités ont été modifiées, la valeur
+  // de retour doit être négative.
   return (modified) ? -addedValues : addedValues;
-
 }//----- Fin de Reunir
 
 
@@ -151,6 +160,7 @@ unsigned int Ensemble::Intersection ( const Ensemble & unEnsemble ) {
   Ensemble toDelete = Ensemble(cardinaliteMaximum);
   int deletedElements = 0;
 
+  // Remplit un ensemble des valeurs à supprimer
   for (int i = 0; i < cardinaliteCourante; i++) {
 
     if (!unEnsemble.estInclus(elements[i]))
@@ -213,11 +223,14 @@ bool Ensemble::estInclus( int valeur ) const
 
 int* Ensemble::trie ( void ) const {
 
+  // Travaille sur une copie
   int* results = exportEnsemble();
 
+  // Un ensemble de moins de 2 éléments est forcément trié
   if (cardinaliteCourante < 2)
     return results;
 
+  // Algorithme de trie à bulle classique
   bool swapped;
   for (int i = 0; i < cardinaliteCourante - 1; i++) {
     swapped = false;
@@ -230,6 +243,8 @@ int* Ensemble::trie ( void ) const {
       }
     }
     
+    // Si aucune modification n'a été faite
+    // le tableau est trié, inutile de continuer.
     if (!swapped)
       break;
   }
@@ -254,6 +269,8 @@ bool Ensemble::retirer ( int element, bool ajustement ) {
   bool elementDeleted = false;
   for (int i = 0; i < cardinaliteCourante; i++) {
 
+    // Si l'élément est trouvé, inverse sa position avec
+    // le dernier et réduis la cardinalité.
     if ((elements[i] == element)) {
       elementDeleted = true;
       cardinaliteCourante--;
@@ -262,6 +279,8 @@ bool Ensemble::retirer ( int element, bool ajustement ) {
     }
   }
 
+  // Permet la réutilisation de la méthode pour les opérations
+  // sur valeurs et sur ensembles.
   if (ajustement)
     Ajuster ( cardinaliteCourante - cardinaliteMaximum );
 

@@ -48,6 +48,8 @@ public:
 
   int Reunir ( const Ensemble & unEnsemble );
 
+  unsigned int Intersection ( const Ensemble & unEnsemble );
+
 //-------------------------------------------- Constructeurs - destructeur
   Ensemble ( unsigned int cardMax = CARDINALITE_MAX);
   
@@ -68,6 +70,10 @@ protected:
 
   int* exportEnsemble ( void ) const;
   // Exporte les valeurs de l'ensemble sous forme de tableau d'entiers.
+
+  bool retirer ( int element, bool ajustement );
+  // Supprime un élément de l'ensemble, avec ou sans ajustement
+  // de la taille.
 
   //----------------------------------------------------- Attributs protégés
   unsigned int cardinaliteCourante;
