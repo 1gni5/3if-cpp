@@ -1,14 +1,15 @@
 /*************************************************************************
-                           Xxx  -  description
+                           Trajet  -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 15/11/2021
+    copyright            : (C) 2021 par Jules DUCANGE et Saad GUESSOUS
+    e-mail               : Jules.Ducange@insa-lyon.fr 
+                           Saad.Guessous@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( XXX_H )
-#define XXX_H
+//---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
+#if ! defined ( Trajet_H )
+#define Trajet_H
 
 //--------------------------------------------------- Interfaces utilisées
 
@@ -17,12 +18,12 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Xxx>
+// Rôle de la classe <Trajet>
 //
 //
 //------------------------------------------------------------------------
 
-class Xxx : public Ancetre
+class Trajet
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -34,29 +35,14 @@ public:
     // Contrat :
     //
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-    Xxx & operator = ( const Xxx & unXxx );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
 //-------------------------------------------- Constructeurs - destructeur
-    Xxx ( const Xxx & unXxx );
-    // Mode d'emploi (constructeur de copie) :
-    //
-    // Contrat :
-    //
-
-    Xxx ( );
+    Trajet ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
 
-    virtual ~Xxx ( );
+    virtual ~Trajet ( );
     // Mode d'emploi :
     //
     // Contrat :
@@ -71,7 +57,7 @@ protected:
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <Xxx>
+//-------------------------------- Autres définitions dépendantes de <Trajet>
 
-#endif // XXX_H
+#endif // Trajet_H
 
