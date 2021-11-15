@@ -3,7 +3,7 @@
                              -------------------
     début                : 15/11/2021
     copyright            : (C) 2021 par Jules DUCANGE et Saad GUESSOUS
-    e-mail               : Jules.Ducange@insa-lyon.fr 
+    e-mail               : Jules.Ducange@insa-lyon.fr
                            Saad.Guessous@insa-lyon.fr
 *************************************************************************/
 
@@ -12,8 +12,8 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
 #include <iostream>
+using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Trajet.h"
@@ -31,8 +31,6 @@ using namespace std;
 
 //-------------------------------------------- Constructeurs - destructeur
 Trajet::Trajet ( )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
@@ -41,8 +39,6 @@ Trajet::Trajet ( )
 
 
 Trajet::~Trajet ( )
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Trajet>" << endl;

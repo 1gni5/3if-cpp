@@ -1,11 +1,12 @@
-
 //---------- Réalisation du module <TestTrajet> (fichier TestTrajet.cpp)
 
 /////////////////////////////////////////////////////////////////  INCLUDE
 //-------------------------------------------------------- Include système
+#include <iostream>
 
+using namespace std;
 //------------------------------------------------------ Include personnel
-#include "TestTrajet.h"
+#include "Trajet.h"
 
 ///////////////////////////////////////////////////////////////////  PRIVE
 //------------------------------------------------------------- Constantes
@@ -27,8 +28,8 @@
 
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
-int main ( int argc, char **argv )
+int main ( )
 {
+  cout << "Hello from TestTrajet" << endl;
   return 0;
 }
-
