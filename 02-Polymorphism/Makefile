@@ -2,7 +2,7 @@ OBJS = Trajet.o TestTrajet.o
 EXEC = Trajets
 
 CXXFLAGS = -Wall -Wpedantic -pedantic -std=c++11 -ansi
-CC = g++
+CC = clang++
 
 all: $(EXEC)
 
