@@ -13,6 +13,7 @@
 
 //-------------------------------------------------------- Include système
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 //------------------------------------------------------ Include personnel
@@ -33,6 +34,16 @@ using namespace std;
 
 TrajetSimple::TrajetSimple ( const char* VilleDepart, const char* VilleArrivee, const char* MoyenTransport)
 {
+    /* Allocation de la mémoire */
+    villeDepart = new char [ strlen(VilleDepart) ];
+    villeArrivee = new char [ strlen(VilleArrivee) ];
+    moyenTransport = new char [ strlen(moyenTransport) ];
+
+    /* Copie des valeurs */
+    strcpy(villeDepart, VilleDepart);
+    strcpy(villeArrivee, VilleArrivee);
+    strcpy(moyenTransport, MoyenTransport);
+
 #ifdef MAP
     cout << "Appel au constructeur de <TrajetSimple>" << endl;
 #endif
@@ -41,6 +52,11 @@ TrajetSimple::TrajetSimple ( const char* VilleDepart, const char* VilleArrivee, 
 
 TrajetSimple::~TrajetSimple ( )
 {
+    /* Libération de la mémoire */
+    delete [] villeDepart;
+    delete [] villeArrivee;
+    delete [] moyenTransport;
+
 #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;
 #endif
