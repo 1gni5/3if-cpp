@@ -1,4 +1,4 @@
-OBJS = Trajet.o TestTrajet.o TrajetSimple.o
+OBJS = Trajet.o TestTrajet.o TrajetSimple.o Cellule.o
 EXEC = Trajets
 
 CXXFLAGS = -Wall -Wpedantic -pedantic -std=c++11 -ansi
