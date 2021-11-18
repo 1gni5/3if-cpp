@@ -41,6 +41,9 @@ public:
     virtual const char* GetVilleArrivee( void ) const = 0;
     // Retourne un pointeur sur villeArrivee.
 
+    virtual void Afficher( void ) const = 0;
+    // Affiche les informations du trajet.
+
 //-------------------------------------------- Constructeurs - destructeur
     Trajet ( );
 

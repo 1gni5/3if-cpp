@@ -39,6 +39,11 @@ const char* TrajetSimple::GetVilleArrivee( void ) const {
    return villeArrivee;
 } // ----- Fin de GetVilleArrivee
 
+void TrajetSimple::Afficher( void ) const {
+    cout << "de " << villeDepart << " à " << villeArrivee << " en "
+        << moyenTransport << endl;
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 
 TrajetSimple::TrajetSimple ( const char* VilleDepart, const char* VilleArrivee, const char* MoyenTransport)
