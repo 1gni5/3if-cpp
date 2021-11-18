@@ -6,7 +6,7 @@
 
 using namespace std;
 //------------------------------------------------------ Include personnel
-#include "Trajet.h"
+#include "TrajetSimple.h"
 
 ///////////////////////////////////////////////////////////////////  PRIVE
 //------------------------------------------------------------- Constantes
@@ -26,10 +26,17 @@ using namespace std;
 //{
 //} //----- fin de nom
 
+static void TestTrajetSimpleConstructor( void )
+// Mode d'emploi : Test le constructeur de TrajetSimple.
+//
+{
+  TrajetSimple trajetSimple = TrajetSimple("Paris", "Lyon", "TGV");
+} //----- fin de TestTrajetSimpleConstructor
+
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
 int main ( )
 {
-  cout << "Hello from TestTrajet" << endl;
+  TestTrajetSimpleConstructor();
   return 0;
 }
