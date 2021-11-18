@@ -33,7 +33,11 @@ using namespace std;
 
 const char* TrajetSimple::GetVilleDepart( void ) const {
    return villeDepart;
-}
+} // ----- Fin de GetVilleDepart
+
+const char* TrajetSimple::GetVilleArrivee( void ) const {
+   return villeArrivee;
+} // ----- Fin de GetVilleArrivee
 
 //-------------------------------------------- Constructeurs - destructeur
 

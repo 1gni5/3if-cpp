@@ -40,7 +40,15 @@ static void TestTrajetSimpleGetVilleDepart( void )
 {
   TrajetSimple trajetSimple = TrajetSimple("Paris", "Lyon", "TGV");
   cout << "Ville de départ : " << trajetSimple.GetVilleDepart() << endl;
-} //----- fin de TestTrajetSimpleConstructor
+} //----- fin de TestTrajetSimpleGetVilleDepart
+
+static void TestTrajetSimpleGetVilleArrivee( void )
+// Mode d'emploi : Test le constructeur de TrajetSimple.
+//
+{
+  TrajetSimple trajetSimple = TrajetSimple("Paris", "Lyon", "TGV");
+  cout << "Ville d'arrivée : " << trajetSimple.GetVilleArrivee() << endl;
+} //----- fin de TestTrajetSimpleGetVilleDepart
 
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
@@ -48,5 +56,6 @@ int main ( )
 {
   TestTrajetSimpleConstructor();
   TestTrajetSimpleGetVilleDepart();
+  TestTrajetSimpleGetVilleArrivee();
   return 0;
 }

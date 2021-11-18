@@ -38,6 +38,9 @@ public:
     virtual const char* GetVilleDepart( void ) const = 0;
     // Retourne un pointeur sur villeDepart.
 
+    virtual const char* GetVilleArrivee( void ) const = 0;
+    // Retourne un pointeur sur villeArrivee.
+
 //-------------------------------------------- Constructeurs - destructeur
     Trajet ( );
 

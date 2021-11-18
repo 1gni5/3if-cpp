@@ -36,6 +36,7 @@ public:
     //
 
     const char* GetVilleDepart( void ) const;
+    const char* GetVilleArrivee( void ) const;
 
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple ( const char*, const char*, const char*);
