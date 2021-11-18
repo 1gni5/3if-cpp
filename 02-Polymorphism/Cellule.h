@@ -1,15 +1,15 @@
-/*************************************************************************
-                           TrajetCompose  -  description
+/************************************************************************
+                           Cellule  -  description
                              -------------------
     début                : 15/11/2021
     copyright            : (C) 2021 par Jules DUCANGE et Saad GUESSOUS
-    e-mail               : Jules.Ducange@insa-lyon.fr 
+    e-mail               : Jules.Ducange@insa-lyon.fr
                            Saad.Guessous@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <TrajetCompose> (fichier TrajetCompose.h) ----------------
-#if ! defined ( TrajetCompose_H )
-#define TrajetCompose_H
+//------------ Interface de la classe <Cellule> (fichier Cellule.h) ------------
+#if ! defined NODE_H_
+#define NODE_H_
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
@@ -18,12 +18,12 @@
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <TrajetCompose>
+// Rôle de la classe <Cellule>
 //
 //
 //------------------------------------------------------------------------
 
-class TrajetCompose : public Trajet
+class Cellule
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -34,18 +34,15 @@ public:
     //
     // Contrat :
     //
-//-------------------------------------------- Constructeurs - destructeur
-    TrajetCompose ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
 
-    virtual ~TrajetCompose ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    const Cellule* GetSuivante( void ) const;
+    const Trajet* GetValeur( void ) const;
+    void Afficher( void ) const;
+
+//-------------------------------------------- Constructeurs - destructeur
+    Cellule ( const Trajet*, const Cellule* );
+
+    virtual ~Cellule ( );
 
 //------------------------------------------------------------------ PRIVE
 
@@ -53,10 +50,11 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
+    const Trajet *valeur;
+    const Cellule *suivante;
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <TrajetCompose>
+//-------------------------------- Autres définitions dépendantes de <Cellule>
 
-#endif // TrajetCompose_H
-
+#endif // NODE_H_

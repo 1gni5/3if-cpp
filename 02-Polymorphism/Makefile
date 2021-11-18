@@ -1,12 +1,12 @@
-OBJS = Trajet.o TestTrajet.o
+OBJS = Trajet.o TestTrajet.o TrajetSimple.o Cellule.o
 EXEC = Trajets
 
 CXXFLAGS = -Wall -Wpedantic -pedantic -std=c++11 -ansi
-CC = g++
+CC = clang++
 
 all: $(EXEC)
 
-debug: CXXFLAGS += -g
+debug: CXXFLAGS += -g -DMAP=1
 debug: $(EXEC)
 
 $(EXEC): $(OBJS)
