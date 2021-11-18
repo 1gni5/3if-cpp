@@ -33,10 +33,20 @@ static void TestTrajetSimpleConstructor( void )
   TrajetSimple trajetSimple = TrajetSimple("Paris", "Lyon", "TGV");
 } //----- fin de TestTrajetSimpleConstructor
 
+
+static void TestTrajetSimpleGetVilleDepart( void )
+// Mode d'emploi : Test le constructeur de TrajetSimple.
+//
+{
+  TrajetSimple trajetSimple = TrajetSimple("Paris", "Lyon", "TGV");
+  cout << "Ville de départ : " << trajetSimple.GetVilleDepart() << endl;
+} //----- fin de TestTrajetSimpleConstructor
+
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
 int main ( )
 {
   TestTrajetSimpleConstructor();
+  TestTrajetSimpleGetVilleDepart();
   return 0;
 }
