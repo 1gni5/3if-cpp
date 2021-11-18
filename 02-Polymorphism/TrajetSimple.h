@@ -35,6 +35,8 @@ public:
     // Contrat :
     //
 
+    const char* GetVilleDepart( void ) const;
+
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple ( const char*, const char*, const char*);
 

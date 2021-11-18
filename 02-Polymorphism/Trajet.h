@@ -35,6 +35,9 @@ public:
     // Contrat :
     //
 
+    virtual const char* GetVilleDepart( void ) const = 0;
+    // Retourne un pointeur sur villeDepart.
+
 //-------------------------------------------- Constructeurs - destructeur
     Trajet ( );
 
