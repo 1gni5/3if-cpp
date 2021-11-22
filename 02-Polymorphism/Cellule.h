@@ -8,8 +8,8 @@
 *************************************************************************/
 
 //------------ Interface de la classe <Cellule> (fichier Cellule.h) ------------
-#if ! defined NODE_H_
-#define NODE_H_
+#if ! defined CELLULE_H_
+#define CELLULE_H_
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
@@ -35,12 +35,13 @@ public:
     // Contrat :
     //
 
-    const Cellule* GetSuivante( void ) const;
+    Cellule* GetSuivante( void ) const;
     const Trajet* GetValeur( void ) const;
+    void SetSuivante( Cellule* );
     void Afficher( void ) const;
 
 //-------------------------------------------- Constructeurs - destructeur
-    Cellule ( const Trajet*, const Cellule* );
+    Cellule ( Trajet*, Cellule* );
 
     virtual ~Cellule ( );
 
@@ -50,11 +51,11 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    const Trajet *valeur;
-    const Cellule *suivante;
+    Trajet *valeur;
+    Cellule *suivante;
 
 };
 
 //-------------------------------- Autres définitions dépendantes de <Cellule>
 
-#endif // NODE_H_
+#endif // CELLULE_H_

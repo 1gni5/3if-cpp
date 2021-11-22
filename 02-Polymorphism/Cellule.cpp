@@ -7,7 +7,7 @@
                            Saad.Guessous@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <Cellule> (fichier Cellule.cpp) ------------
+//------- Réalisation de la classe <Cellule> (fichier Cellule.cpp) -------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -30,9 +30,13 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-const Cellule* Cellule::GetSuivante( void ) const {
+Cellule* Cellule::GetSuivante( void ) const {
     return suivante;
 } // ----- Fin de GetSuivante
+
+void Cellule::SetSuivante( Cellule* celluleSuivante ) {
+    suivante = celluleSuivante;
+} // ----- Fin de SetSuivante
 
 const Trajet* Cellule::GetValeur( void ) const {
     return valeur;
@@ -44,7 +48,7 @@ void Cellule::Afficher( void ) const {
 
 //-------------------------------------------- Constructeurs - destructeur
 
-Cellule::Cellule ( const Trajet* Valeur, const Cellule* Suivante )
+Cellule::Cellule ( Trajet* Valeur, Cellule* Suivante )
 {
     valeur = Valeur;
     suivante = Suivante;
