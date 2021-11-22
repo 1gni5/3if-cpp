@@ -8,7 +8,7 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "TrajetSimple.h"
 #include "Cellule.h"
-
+#include "ListeChainee.h"
 ///////////////////////////////////////////////////////////////////  PRIVE
 //------------------------------------------------------------- Constantes
 
@@ -100,6 +100,43 @@ static void TestCelluleAfficher( void )
   cellule.Afficher( );
 } //----- fin de TestTrajetSimpleGetVilleDepart
 
+static void TestListeChaineeConstructeur( void )
+// Mode d'emploi : Test le constructeur de ListeChainee.
+//
+{
+  TrajetSimple trajetSimple = TrajetSimple("Paris", "Lyon", "TGV");
+  TrajetSimple *pointeurTrajetSimple = &trajetSimple;
+  Cellule cellule = Cellule( pointeurTrajetSimple, NULL );
+  ListeChainee* listeChainee = new ListeChainee ();
+  delete listeChainee;
+} //----- fin de TestTrajetSimpleGetVilleDepart
+
+static void TestListeChaineeAjouter( void )
+// Mode d'emploi : Test le constructeur de ListeChainee.
+//
+{
+  TrajetSimple trajetSimple = TrajetSimple("Paris", "Lyon", "TGV");
+  TrajetSimple *pointeurTrajetSimple = &trajetSimple;
+  Cellule* cellule = new Cellule ( pointeurTrajetSimple, NULL );
+  ListeChainee* listeChainee = new ListeChainee ();
+  listeChainee->AjouterFin(cellule);
+  delete listeChainee;
+} //----- fin de TestTrajetSimpleGetVilleDepart
+
+static void TestListeChaineeRetirer( void )
+// Mode d'emploi : Test le constructeur de ListeChainee.
+//
+{
+  TrajetSimple trajetSimple = TrajetSimple("Paris", "Lyon", "TGV");
+  TrajetSimple *pointeurTrajetSimple = &trajetSimple;
+  Cellule* cellule = new Cellule ( pointeurTrajetSimple, NULL );
+  ListeChainee* listeChainee = new ListeChainee ();
+  listeChainee->AjouterFin(cellule);
+  Cellule* celluleSupprimee = listeChainee->RetirerFin();
+  celluleSupprimee->Afficher();
+  delete listeChainee;
+} //----- fin de TestTrajetSimpleGetVilleDepart
+
 //////////////////////////////////////////////////////////////////  PUBLIC
 //---------------------------------------------------- Fonctions publiques
 int main ( )
@@ -117,5 +154,11 @@ int main ( )
   TestCelluleGetValeur();
   TestCelluleGetSuivante();
   TestCelluleAfficher();
+
+  /* Test de ListeChainee */
+  cout << " ----- Test de ListeChainee ----- " <<endl;
+  TestListeChaineeConstructeur();
+  TestListeChaineeAjouter();
+  TestListeChaineeRetirer();
   return 0;
 }
