@@ -1,5 +1,5 @@
 /************************************************************************
-                           Liste Chaînée  -  description
+                           TrajetCompose  -  description
                              -------------------
     début                : 15/11/2021
     copyright            : (C) 2021 par Jules DUCANGE et Saad GUESSOUS
@@ -7,24 +7,24 @@
                            Saad.Guessous@insa-lyon.fr
 *************************************************************************/
 
-//---- Interface de la classe <ListeChainee> (fichier ListeChainee.h) ----
-#if ! defined LISTECHAINEE_H_
-#define LISTECHAINEE_H_
+//---------- Interface de la classe <TrajetCompose> (fichier TrajetCompose.h) ----------------
+#if ! defined TRAJETCompose_H_
+#define TRAJETCompose_H_
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Trajet.h"
-#include "Cellule.h"
+#include "ListeChainee.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <ListeChainee>
+// Rôle de la classe <TrajetCompose>
 //
 //
 //------------------------------------------------------------------------
 
-class ListeChainee
+class TrajetCompose : public Trajet
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -36,16 +36,17 @@ public:
     // Contrat :
     //
 
-    void AjouterFin ( Cellule* nouvelleCellule);
-    Cellule* RetirerFin ( void );
+    const char* GetVilleDepart( void ) const;
+    const char* GetVilleArrivee( void ) const;
+    virtual void Afficher( void ) const;
 
-    const Cellule* GetFin ( void ) const;
-    const Cellule* GetDebut ( void ) const;
+    void AjouterTrajetFin ( Trajet* );
+    const Trajet* RetirerTrajetFin ( void );
 
 //-------------------------------------------- Constructeurs - destructeur
-    ListeChainee ( void );
+    TrajetCompose ( void );
 
-    virtual ~ListeChainee ( void );
+    virtual ~TrajetCompose ( void );
 
 //------------------------------------------------------------------ PRIVE
 
@@ -53,10 +54,9 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    Cellule* debut;
-    Cellule* fin;
+    ListeChainee listeTrajets;
 };
 
-//-------------------------------- Autres définitions dépendantes de <ListeChainee>
+//-------------------------------- Autres définitions dépendantes de <TrajetCompose>
 
-#endif // LISTECHAINEE_H_
+#endif // TRAJETCompose_H_

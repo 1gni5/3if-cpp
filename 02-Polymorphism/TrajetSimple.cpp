@@ -49,9 +49,9 @@ void TrajetSimple::Afficher( void ) const {
 TrajetSimple::TrajetSimple ( const char* VilleDepart, const char* VilleArrivee, const char* MoyenTransport)
 {
     /* Allocation de la mémoire */
-    villeDepart = new char [ strlen(VilleDepart) ];
-    villeArrivee = new char [ strlen(VilleArrivee) ];
-    moyenTransport = new char [ strlen(moyenTransport) ];
+    villeDepart = new char [ strlen(VilleDepart) + 1 ];
+    villeArrivee = new char [ strlen(VilleArrivee) + 1 ];
+    moyenTransport = new char [ strlen(moyenTransport) + 1 ];
 
     /* Copie des valeurs */
     strcpy(villeDepart, VilleDepart);

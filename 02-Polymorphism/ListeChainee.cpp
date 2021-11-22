@@ -62,9 +62,18 @@ Cellule* ListeChainee::RetirerFin ( void )
     return resultat;
 } //----- Fin de Retirer
 
+
+const Cellule* ListeChainee::GetFin ( void ) const{
+    return fin;
+}
+const Cellule* ListeChainee::GetDebut ( void ) const{
+    return debut;
+}
+
 //-------------------------------------------- Constructeurs - destructeur
 
-ListeChainee::ListeChainee ( void ): debut (NULL), fin (NULL)
+ListeChainee::ListeChainee ( void )
+    : debut (NULL), fin (NULL)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <ListeChainee>" << endl;
