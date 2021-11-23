@@ -1,16 +1,21 @@
-OBJS = Trajet.o TestTrajet.o TrajetSimple.o Cellule.o ListeChainee.o TrajetCompose.o
-EXEC = Trajets
-
+CXX = clang++
 CXXFLAGS = -Wall -Wpedantic -pedantic -std=c++11 -ansi
-CC = clang++
+SOURCES = Tests.cpp Trajet.cpp TrajetSimple.cpp TestTrajetSimple.cpp
+OBJECTS = $(subst .cpp,.o, $(SOURCES))
+EXEC = Trajets
 
 all: $(EXEC)
 
-debug: CXXFLAGS += -g -DMAP=1
+debug: CXXFLAGS += -g -DMAP
 debug: $(EXEC)
 
-$(EXEC): $(OBJS)
-	$(CC) -o $@ $(OBJS)
+$(EXEC): $(OBJECTS)
+	$(CXX) -o $(EXEC) $(OBJECTS)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f *.o $(EXEC)
+	rm -f $(OBJECTS) $(EXEC)
+
+.PHONY: clean debug all
