@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Trajet  -  description
+                           Trajet  -  Classe abstraite
                              -------------------
     début                : 15/11/2021
     copyright            : (C) 2021 par Jules DUCANGE et Saad GUESSOUS
@@ -7,7 +7,7 @@
                            Saad.Guessous@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ------------
+//------- Réalisation de la classe <Trajet> (fichier Trajet.cpp) ---------
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -32,17 +32,17 @@ using namespace std;
 //-------------------------------------------- Constructeurs - destructeur
 Trajet::Trajet ( )
 {
-#ifdef MAP
+    #ifdef MAP
     cout << "Appel au constructeur de <Trajet>" << endl;
-#endif
+    #endif
 } //----- Fin de Trajet
 
 
 Trajet::~Trajet ( )
 {
-#ifdef MAP
+    #ifdef MAP
     cout << "Appel au destructeur de <Trajet>" << endl;
-#endif
+    #endif
 } //----- Fin de ~Trajet
 
 

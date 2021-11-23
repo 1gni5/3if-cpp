@@ -1,5 +1,5 @@
 /*************************************************************************
-                           TrajetSimple  -  description
+                           TrajetSimple  -  Implémentation de Trajet
                              -------------------
     début                : 15/11/2021
     copyright            : (C) 2021 par Jules DUCANGE et Saad GUESSOUS
@@ -7,7 +7,7 @@
                            Saad.Guessous@insa-lyon.fr
 *************************************************************************/
 
-//---------- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) ------------
+//-- Réalisation de la classe <TrajetSimple> (fichier TrajetSimple.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -46,8 +46,13 @@ void TrajetSimple::Afficher( void ) const {
 
 //-------------------------------------------- Constructeurs - destructeur
 
-TrajetSimple::TrajetSimple ( const char* VilleDepart, const char* VilleArrivee, const char* MoyenTransport)
+TrajetSimple::TrajetSimple ( const char* VilleDepart, 
+    const char* VilleArrivee, const char* MoyenTransport)
 {
+    #ifdef MAP
+    cout << "Appel au constructeur de <TrajetSimple>" << endl;
+    #endif
+
     /* Allocation de la mémoire */
     villeDepart = new char [ strlen(VilleDepart) + 1 ];
     villeArrivee = new char [ strlen(VilleArrivee) + 1 ];
@@ -57,23 +62,19 @@ TrajetSimple::TrajetSimple ( const char* VilleDepart, const char* VilleArrivee, 
     strcpy(villeDepart, VilleDepart);
     strcpy(villeArrivee, VilleArrivee);
     strcpy(moyenTransport, MoyenTransport);
-
-#ifdef MAP
-    cout << "Appel au constructeur de <TrajetSimple>" << endl;
-#endif
 } //----- Fin de TrajetSimple
 
 
 TrajetSimple::~TrajetSimple ( )
 {
+    #ifdef MAP
+    cout << "Appel au destructeur de <TrajetSimple>" << endl;
+    #endif
+
     /* Libération de la mémoire */
     delete [] villeDepart;
     delete [] villeArrivee;
     delete [] moyenTransport;
-
-#ifdef MAP
-    cout << "Appel au destructeur de <TrajetSimple>" << endl;
-#endif
 } //----- Fin de ~TrajetSimple
 
 //------------------------------------------------------------------ PRIVE

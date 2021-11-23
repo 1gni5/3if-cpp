@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Trajet  -  (abstraite)
+                           Trajet  -  Classe abstraite
                              -------------------
     début                : 15/11/2021
     copyright            : (C) 2021 par Jules DUCANGE et Saad GUESSOUS
@@ -7,7 +7,7 @@
                            Saad.Guessous@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <Trajet> (fichier Trajet.h) ----------------
+//--------- Interface de la classe <Trajet> (fichier Trajet.h) -----------
 #if ! defined ( TRAJET_H )
 #define TRAJET_H
 
@@ -58,6 +58,6 @@ protected:
 
 };
 
-//-------------------------------- Autres définitions dépendantes de <Trajet>
+//----------------------------- Autres définitions dépendantes de <Trajet>
 
 #endif // TRAJET_H_

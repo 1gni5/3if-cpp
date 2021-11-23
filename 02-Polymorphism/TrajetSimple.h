@@ -1,5 +1,5 @@
 /************************************************************************
-                           TrajetSimple  -  description
+                           TrajetSimple  -  Implémentation de Trajet
                              -------------------
     début                : 15/11/2021
     copyright            : (C) 2021 par Jules DUCANGE et Saad GUESSOUS
@@ -7,7 +7,7 @@
                            Saad.Guessous@insa-lyon.fr
 *************************************************************************/
 
-//---------- Interface de la classe <TrajetSimple> (fichier TrajetSimple.h) ----------------
+// ---- Interface de la classe <TrajetSimple> (fichier TrajetSimple.h) ---
 #if ! defined TRAJETSIMPLE_H_
 #define TRAJETSIMPLE_H_
 
@@ -55,6 +55,6 @@ protected:
     char* moyenTransport;
 };
 
-//-------------------------------- Autres définitions dépendantes de <TrajetSimple>
+//----------------------- Autres définitions dépendantes de <TrajetSimple>
 
 #endif // TRAJETSIMPLE_H_
