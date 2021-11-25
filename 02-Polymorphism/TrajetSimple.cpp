@@ -56,7 +56,7 @@ TrajetSimple::TrajetSimple ( const char* VilleDepart,
     /* Allocation de la mémoire */
     villeDepart = new char [ strlen(VilleDepart) + 1 ];
     villeArrivee = new char [ strlen(VilleArrivee) + 1 ];
-    moyenTransport = new char [ strlen(moyenTransport) + 1 ];
+    moyenTransport = new char [ strlen(MoyenTransport) + 1 ];
 
     /* Copie des valeurs */
     strcpy(villeDepart, VilleDepart);
