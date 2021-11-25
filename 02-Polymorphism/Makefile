@@ -10,7 +10,7 @@ debug: CXXFLAGS += -g -DMAP
 debug: $(EXEC)
 
 $(EXEC): $(OBJECTS)
-	$(CXX) -o $(EXEC) $(OBJECTS)
+	$(CXX) $(CXXFLAGS) -o $(EXEC) $(OBJECTS)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@

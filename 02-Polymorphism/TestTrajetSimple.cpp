@@ -36,9 +36,9 @@ void TestTrajetSimple::RunAllUnitTest ( void ) {
     #endif
 
     TestTrajetSimple::TestConstructeur ( );
-    TestTrajetSimple::TestGetVilleDepart ( );
-    TestTrajetSimple::TestGetVilleArrivee ( );
-    TestTrajetSimple::TestAfficher ( );
+    // TestTrajetSimple::TestGetVilleDepart ( );
+    // TestTrajetSimple::TestGetVilleArrivee ( );
+    // TestTrajetSimple::TestAfficher ( );
 }
 
 
