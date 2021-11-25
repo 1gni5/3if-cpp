@@ -37,6 +37,12 @@ Trajet::Trajet ( )
     #endif
 } //----- Fin de Trajet
 
+Trajet::Trajet ( const Trajet& trajet )
+{
+    #ifdef MAP
+    cout << "Appel au constructeur de copie de <Trajet>" << endl;
+    #endif
+} //----- Fin de Trajet
 
 Trajet::~Trajet ( )
 {

@@ -47,6 +47,8 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
     Trajet ( );
 
+    Trajet ( const Trajet& trajet );
+
     virtual ~Trajet ( );
 
 //------------------------------------------------------------------ PRIVE

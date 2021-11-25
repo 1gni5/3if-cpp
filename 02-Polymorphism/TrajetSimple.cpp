@@ -64,8 +64,24 @@ TrajetSimple::TrajetSimple ( const char* VilleDepart,
     strcpy(moyenTransport, MoyenTransport);
 } //----- Fin de TrajetSimple
 
+TrajetSimple::TrajetSimple ( const TrajetSimple& trajet )
+{
+    #ifdef MAP
+    cout << "Appel au constructeur de copie de <TrajetSimple>" << endl;
+    #endif
 
-TrajetSimple::~TrajetSimple ( )
+    /* Allocation de la mémoire */
+    villeDepart = new char [ strlen(trajet.villeDepart) + 1 ];
+    villeArrivee = new char [ strlen(trajet.villeArrivee) + 1 ];
+    moyenTransport = new char [ strlen(trajet.moyenTransport) + 1 ];
+
+    /* Copie des valeurs */
+    strcpy(villeDepart, trajet.villeDepart);
+    strcpy(villeArrivee, trajet.villeArrivee);
+    strcpy(moyenTransport, trajet.moyenTransport);
+} //----- Fin de Trajet
+
+TrajetSimple::~TrajetSimple ( void )
 {
     #ifdef MAP
     cout << "Appel au destructeur de <TrajetSimple>" << endl;

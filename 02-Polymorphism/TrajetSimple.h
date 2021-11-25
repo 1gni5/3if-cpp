@@ -41,7 +41,7 @@ public:
 
 //-------------------------------------------- Constructeurs - destructeur
     TrajetSimple ( const char*, const char*, const char*);
-
+    TrajetSimple ( const TrajetSimple& );
     virtual ~TrajetSimple ( );
 
 //------------------------------------------------------------------ PRIVE
