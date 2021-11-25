@@ -1,6 +1,7 @@
 CXX = clang++
 CXXFLAGS = -Wall -Wpedantic -pedantic -std=c++11 -ansi
-SOURCES = Tests.cpp Trajet.cpp TrajetSimple.cpp TestTrajetSimple.cpp Cellule.cpp TestCellule.cpp
+SOURCES = Tests.cpp Trajet.cpp TrajetSimple.cpp TestTrajetSimple.cpp Cellule.cpp \
+TestCellule.cpp ListeChainee.cpp TestListeChainee.cpp
 OBJECTS = $(subst .cpp,.o, $(SOURCES))
 EXEC = Trajets
 
