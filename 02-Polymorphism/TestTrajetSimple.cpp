@@ -32,7 +32,7 @@ using namespace std;
 
 void TestTrajetSimple::RunAllUnitTest ( void ) {
     #ifdef MAP
-    cout << "--- Running all unittests ---" << endl;
+    cout << "--- Running all unittests for TrajetSimple ---" << endl;
     #endif
 
     TestTrajetSimple::TestConstructeur ( );

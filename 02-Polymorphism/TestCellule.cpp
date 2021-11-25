@@ -32,7 +32,7 @@ using namespace std;
 
 void TestCellule::RunAllUnitTest ( void ) {
     #ifdef MAP
-    cout << "--- Running all unittests ---" << endl;
+    cout << "--- Running all unittests for Cellule---" << endl;
     #endif
 
     TestCellule::TestConstructeur ( );
