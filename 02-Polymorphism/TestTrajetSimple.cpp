@@ -36,9 +36,10 @@ void TestTrajetSimple::RunAllUnitTest ( void ) {
     #endif
 
     TestTrajetSimple::TestConstructeur ( );
-    // TestTrajetSimple::TestGetVilleDepart ( );
-    // TestTrajetSimple::TestGetVilleArrivee ( );
-    // TestTrajetSimple::TestAfficher ( );
+    TestTrajetSimple::TestConstructeurCopie ( );
+    TestTrajetSimple::TestGetVilleDepart ( );
+    TestTrajetSimple::TestGetVilleArrivee ( );
+    TestTrajetSimple::TestAfficher ( );
 }
 
 
@@ -48,6 +49,15 @@ void TestTrajetSimple::TestConstructeur ( void ) {
     #endif
 
     TrajetSimple trajetSimple ("Paris", "Lyon", "TGV");
+}
+
+void TestTrajetSimple::TestConstructeurCopie ( void ) {
+    #ifdef MAP
+    cout << "--- TestConstructeurCopie ---" << endl;
+    #endif
+
+    TrajetSimple trajetSimple ("Paris", "Lyon", "TGV");
+    TrajetSimple copieTrajet (trajetSimple);
 }
 
 void TestTrajetSimple::TestGetVilleDepart ( void ) {

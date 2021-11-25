@@ -38,6 +38,7 @@ public:
     static void RunAllUnitTest ( void );
 
     static void TestConstructeur ( void );
+    static void TestConstructeurCopie ( void );
     static void TestGetVilleDepart ( void );
     static void TestGetVilleArrivee ( void );
     static void TestAfficher ( void );
