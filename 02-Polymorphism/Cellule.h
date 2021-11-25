@@ -1,5 +1,5 @@
 /************************************************************************
-                           Cellule  -  description
+                           Cellule  -  Composant ListeChainée
                              -------------------
     début                : 15/11/2021
     copyright            : (C) 2021 par Jules DUCANGE et Saad GUESSOUS
@@ -7,7 +7,7 @@
                            Saad.Guessous@insa-lyon.fr
 *************************************************************************/
 
-//------------ Interface de la classe <Cellule> (fichier Cellule.h) ------------
+//------- Interface de la classe <Cellule> (fichier Cellule.h) ----------
 #if ! defined CELLULE_H_
 #define CELLULE_H_
 
@@ -35,11 +35,6 @@ public:
     // Contrat :
     //
 
-    Cellule* GetSuivante( void ) const;
-    const Trajet* GetValeur( void ) const;
-    void SetSuivante( Cellule* );
-    void Afficher( void ) const;
-
 //-------------------------------------------- Constructeurs - destructeur
     Cellule ( Trajet*, Cellule* );
 
@@ -54,6 +49,7 @@ protected:
     Trajet *valeur;
     Cellule *suivante;
 
+    friend class ListeChainee;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Cellule>

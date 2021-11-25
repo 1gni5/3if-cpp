@@ -1,5 +1,5 @@
-/*************************************************************************
-                           Cellule  -  description
+/************************************************************************
+                           Cellule  -  Composant ListeChainée
                              -------------------
     début                : 15/11/2021
     copyright            : (C) 2021 par Jules DUCANGE et Saad GUESSOUS
@@ -30,40 +30,25 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-Cellule* Cellule::GetSuivante( void ) const {
-    return suivante;
-} // ----- Fin de GetSuivante
-
-void Cellule::SetSuivante( Cellule* celluleSuivante ) {
-    suivante = celluleSuivante;
-} // ----- Fin de SetSuivante
-
-const Trajet* Cellule::GetValeur( void ) const {
-    return valeur;
-} // ----- Fin de GetValeur
-
-void Cellule::Afficher( void ) const {
-    valeur->Afficher();
-}
-
 //-------------------------------------------- Constructeurs - destructeur
 
 Cellule::Cellule ( Trajet* Valeur, Cellule* Suivante )
 {
+    #ifdef MAP
+    cout << "Appel au constructeur de <Cellule>" << endl;
+    #endif
+
     valeur = Valeur;
     suivante = Suivante;
-#ifdef MAP
-    cout << "Appel au constructeur de <Cellule>" << endl;
-#endif
 } //----- Fin de Cellule
 
 
 Cellule::~Cellule ( )
 {
-
-#ifdef MAP
+    delete valeur;
+    #ifdef MAP
     cout << "Appel au destructeur de <Cellule>" << endl;
-#endif
+    #endif
 } //----- Fin de ~Cellule
 
 //------------------------------------------------------------------ PRIVE
