@@ -17,6 +17,8 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "TestListeChainee.h"
+#include "TrajetSimple.h"
+#include "Cellule.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -35,6 +37,8 @@ void TestListeChainee::RunAllUnitTest ( void ) {
     #endif
 
     TestListeChainee::TestConstructeur ( );
+    TestListeChainee::TestAjouter ( );
+    TestListeChainee::TestRetirer ( );
 }
 
 
@@ -44,6 +48,31 @@ void TestListeChainee::TestConstructeur ( void ) {
     #endif
 
     ListeChainee listeChainee;
+}
+
+void TestListeChainee::TestAjouter ( void ) {
+    #ifdef MAP
+    cout << "--- TestAjouter ---" << endl;
+    #endif
+
+    ListeChainee listeChainee;
+    TrajetSimple* trajetSimple = new TrajetSimple("Paris", "Lyon", "TGV");
+    Cellule* cellule = new Cellule(trajetSimple, NULL);
+
+    listeChainee.Ajouter (cellule);
+}
+
+void TestListeChainee::TestRetirer ( void ) {
+    #ifdef MAP
+    cout << "--- TestRetirer ---" << endl;
+    #endif
+
+    ListeChainee listeChainee;
+    TrajetSimple* trajetSimple = new TrajetSimple("Paris", "Lyon", "TGV");
+    Cellule* cellule = new Cellule(trajetSimple, NULL);
+
+    listeChainee.Ajouter (cellule);
+    listeChainee.Retirer ( );
 }
 
 //-------------------------------------------- Constructeurs - destructeur

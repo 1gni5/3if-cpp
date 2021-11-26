@@ -38,6 +38,8 @@ public:
     static void RunAllUnitTest(void);
 
     static void TestConstructeur(void);
+    static void TestAjouter(void);
+    static void TestRetirer(void);
 //-------------------------------------------- Constructeurs - destructeur
     TestListeChainee();
 
