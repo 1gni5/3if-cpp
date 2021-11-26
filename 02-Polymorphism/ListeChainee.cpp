@@ -76,6 +76,24 @@ void ListeChainee::Retirer ( void )
     fin = precedente;
 } //----- Fin de Retirer
 
+const Cellule* ListeChainee::GetDebut ( void ) const{
+    return debut;
+} //----- Fin de GetDebut
+
+const Cellule* ListeChainee::GetFin ( void ) const{
+    return debut;
+} //----- Fin de GetFin
+
+void ListeChainee::Afficher ( void ) const {
+
+    Cellule* courante = debut;
+    while (courante != NULL) {
+        courante->valeur->Afficher();
+        courante = courante->suivante;
+    }
+
+} //----- Fin de Afficher
+
 //-------------------------------------------- Constructeurs - destructeur
 
 ListeChainee::ListeChainee ( void )

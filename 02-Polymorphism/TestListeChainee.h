@@ -40,6 +40,10 @@ public:
     static void TestConstructeur(void);
     static void TestAjouter(void);
     static void TestRetirer(void);
+
+    static void TestGetDebut(void);
+    static void TestGetFin(void);
+    static void TestAfficher(void);
 //-------------------------------------------- Constructeurs - destructeur
     TestListeChainee();
 

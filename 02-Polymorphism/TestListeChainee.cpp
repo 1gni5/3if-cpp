@@ -39,6 +39,10 @@ void TestListeChainee::RunAllUnitTest ( void ) {
     TestListeChainee::TestConstructeur ( );
     TestListeChainee::TestAjouter ( );
     TestListeChainee::TestRetirer ( );
+
+    TestListeChainee::TestGetDebut ( );
+    TestListeChainee::TestGetFin ( );
+    TestListeChainee::TestAfficher ( );
 }
 
 
@@ -74,6 +78,44 @@ void TestListeChainee::TestRetirer ( void ) {
 
     listeChainee.Ajouter (cellule);
     listeChainee.Retirer ( );
+}
+void TestListeChainee::TestGetDebut ( void ) {
+    #ifdef MAP
+    cout << "--- TestGetDebut ---" << endl;
+    #endif
+
+    ListeChainee listeChainee;
+    TrajetSimple* trajetSimple = new TrajetSimple("Paris", "Lyon", "TGV");
+    Cellule* cellule = new Cellule(trajetSimple, NULL);
+
+    listeChainee.Ajouter (cellule);
+    const Cellule* retour = listeChainee.GetDebut();
+}
+
+void TestListeChainee::TestGetFin ( void ) {
+    #ifdef MAP
+    cout << "--- TestGetFin ---" << endl;
+    #endif
+
+    ListeChainee listeChainee;
+    TrajetSimple* trajetSimple = new TrajetSimple("Paris", "Lyon", "TGV");
+    Cellule* cellule = new Cellule(trajetSimple, NULL);
+
+    listeChainee.Ajouter (cellule);
+    const Cellule* retour = listeChainee.GetFin();
+}
+
+void TestListeChainee::TestAfficher ( void ) {
+    #ifdef MAP
+    cout << "--- TestGetAfficher ---" << endl;
+    #endif
+
+    ListeChainee listeChainee;
+    TrajetSimple* trajetSimple = new TrajetSimple("Paris", "Lyon", "TGV");
+    Cellule* cellule = new Cellule(trajetSimple, NULL);
+
+    listeChainee.Ajouter (cellule);
+    listeChainee.Afficher ( );
 }
 
 //-------------------------------------------- Constructeurs - destructeur

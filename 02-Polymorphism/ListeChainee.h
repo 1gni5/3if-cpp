@@ -39,6 +39,10 @@ public:
     void Ajouter ( Cellule* );
     void Retirer ( void );
 
+    const Cellule* GetDebut ( void ) const;
+    const Cellule* GetFin ( void ) const;
+    void Afficher ( void ) const;
+
 //-------------------------------------------- Constructeurs - destructeur
     ListeChainee ( void );
 
