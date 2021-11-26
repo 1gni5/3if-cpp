@@ -40,6 +40,13 @@ void ListeChainee::Ajouter ( Cellule* nouvelleCellule)
         return;
     }
 
+    /* Vérifie que la valeur n'existe pas déjà dans la liste */
+    Cellule* courante = debut;
+    while (courante != NULL) {
+        if (courante == nouvelleCellule) return;
+        courante = courante->suivante;
+    }
+
     /* Ajoute la cellule en fin de liste */
     fin->suivante = nouvelleCellule ;
     fin = nouvelleCellule;

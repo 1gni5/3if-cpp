@@ -60,6 +60,7 @@ void TestListeChainee::TestAjouter ( void ) {
     Cellule* cellule = new Cellule(trajetSimple, NULL);
 
     listeChainee.Ajouter (cellule);
+    listeChainee.Ajouter (cellule);
 }
 
 void TestListeChainee::TestRetirer ( void ) {
