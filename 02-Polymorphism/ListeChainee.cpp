@@ -32,6 +32,8 @@ using namespace std;
 
 void ListeChainee::Ajouter ( Cellule* nouvelleCellule)
 {
+    nouvelleCellule->suivante = NULL;
+
     /* Liste vide */
     if (debut == NULL) {
         fin = debut = nouvelleCellule;
@@ -40,22 +42,31 @@ void ListeChainee::Ajouter ( Cellule* nouvelleCellule)
 
     /* Ajoute la cellule en fin de liste */
     fin->suivante = nouvelleCellule ;
-    nouvelleCellule->suivante = NULL;
     fin = nouvelleCellule;
 } //----- Fin de Ajouter
 
 void ListeChainee::Retirer ( void )
 {
     /* Liste vide */
-    if (debut == NULL) return;
+    if (debut == NULL || fin == NULL) return;
 
-    Cellule* nouvelleCelluleDeFin = debut;
-    while (nouvelleCelluleDeFin->suivante != fin)
-        nouvelleCelluleDeFin = nouvelleCelluleDeFin->suivante;
+    Cellule* precedente = NULL;
+    Cellule* courante = debut;
+
+    while (courante->suivante != NULL) {
+        precedente = courante;
+        courante = courante->suivante;
+    }
+    
+    /* Suppression de la tête de liste */
+    if (precedente != NULL)
+        precedente->suivante = NULL;
+
+    if (debut == fin)
+        debut = NULL;
 
     delete fin;
-    nouvelleCelluleDeFin->suivante = NULL;
-    fin = nouvelleCelluleDeFin;
+    fin = precedente;
 } //----- Fin de Retirer
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -75,12 +86,15 @@ ListeChainee::~ListeChainee ( void )
     cout << "Appel au destructeur de <ListeChainee>" << endl;
     #endif
 
-    Cellule* celluleDeParcours = debut;
-    while ( celluleDeParcours != NULL) {
-        Cellule* aSupprimer = celluleDeParcours;
-        celluleDeParcours = celluleDeParcours->suivante;
-        delete aSupprimer;
+    Cellule* precedente = NULL;
+    Cellule* courante = debut;
+
+    while (courante != NULL) {
+        precedente = courante;
+        courante = courante->suivante;
+        delete precedente;
     }
+
 } //----- Fin de ~ListeChainee
 
 //------------------------------------------------------------------ PRIVE
