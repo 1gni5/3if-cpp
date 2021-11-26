@@ -36,8 +36,8 @@ void TestCellule::RunAllUnitTest ( void ) {
     #endif
 
     TestCellule::TestConstructeur ( );
+    TestCellule::TestGetValeur ( );
 }
-
 
 void TestCellule::TestConstructeur ( void ) {
     #ifdef MAP
@@ -46,6 +46,16 @@ void TestCellule::TestConstructeur ( void ) {
 
     Trajet* trajet = new TrajetSimple("Lyon", "Paris", "TGV");
     Cellule cellule (trajet, NULL);
+}
+
+void TestCellule::TestGetValeur ( void ) {
+    #ifdef MAP
+    cout << "--- TestGetValeur ---" << endl;
+    #endif
+
+    Trajet* trajet = new TrajetSimple("Lyon", "Paris", "TGV");
+    Cellule cellule (trajet, NULL);
+    const Trajet* retour = cellule.GetValeur ( );
 }
 
 //-------------------------------------------- Constructeurs - destructeur

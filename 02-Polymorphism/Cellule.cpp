@@ -30,6 +30,10 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
+const Trajet* Cellule::GetValeur ( void ) const {
+    return valeur;
+} //------- Fin de GetValeur
+
 //-------------------------------------------- Constructeurs - destructeur
 
 Cellule::Cellule ( Trajet* Valeur, Cellule* Suivante )
@@ -42,6 +46,14 @@ Cellule::Cellule ( Trajet* Valeur, Cellule* Suivante )
     suivante = Suivante;
 } //----- Fin de Cellule
 
+
+Cellule::Cellule ( const Cellule& cellule ) {
+    #ifdef MAP
+    cout << "Appel au constructeur de copie de <Cellule>" << endl;
+    #endif
+
+    // valeur = new Trajet ( cellule.valeur );
+} //----- Fin de Cellule
 
 Cellule::~Cellule ( )
 {

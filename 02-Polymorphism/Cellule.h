@@ -35,9 +35,11 @@ public:
     // Contrat :
     //
 
+    const Trajet* GetValeur ( void ) const;
+
 //-------------------------------------------- Constructeurs - destructeur
     Cellule ( Trajet*, Cellule* );
-
+    Cellule ( const Cellule& );
     virtual ~Cellule ( );
 
 //------------------------------------------------------------------ PRIVE

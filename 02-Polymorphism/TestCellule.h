@@ -38,6 +38,8 @@ public:
     static void RunAllUnitTest ( void );
 
     static void TestConstructeur ( void );
+    static void TestGetValeur ( void );
+
 //-------------------------------------------- Constructeurs - destructeur
     TestCellule ( );
 
