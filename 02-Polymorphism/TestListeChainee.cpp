@@ -90,6 +90,7 @@ void TestListeChainee::TestGetDebut ( void ) {
 
     listeChainee.Ajouter (cellule);
     const Cellule* retour = listeChainee.GetDebut();
+    retour->GetValeur()->Afficher();
 }
 
 void TestListeChainee::TestGetFin ( void ) {
@@ -103,6 +104,7 @@ void TestListeChainee::TestGetFin ( void ) {
 
     listeChainee.Ajouter (cellule);
     const Cellule* retour = listeChainee.GetFin();
+    retour->GetValeur()->Afficher();
 }
 
 void TestListeChainee::TestAfficher ( void ) {

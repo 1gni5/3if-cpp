@@ -56,6 +56,7 @@ void TestCellule::TestGetValeur ( void ) {
     Trajet* trajet = new TrajetSimple("Lyon", "Paris", "TGV");
     Cellule cellule (trajet, NULL);
     const Trajet* retour = cellule.GetValeur ( );
+    retour->Afficher();
 }
 
 //-------------------------------------------- Constructeurs - destructeur
