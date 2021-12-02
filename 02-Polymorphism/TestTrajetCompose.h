@@ -38,6 +38,12 @@ public:
     static void RunAllUnitTest(void);
 
     static void TestConstructeur(void);
+    static void TestAjouterTrajet(void);
+    static void TestRetirerTrajet(void);
+    static void TestAfficher(void);
+    static void TestGetVilleDepart(void);
+    static void TestGetVilleArrivee(void);
+
 //-------------------------------------------- Constructeurs - destructeur
     TestTrajetCompose();
 

@@ -37,6 +37,11 @@ void TestTrajetCompose::RunAllUnitTest ( void ) {
     #endif
 
     TestTrajetCompose::TestConstructeur ( );
+    TestTrajetCompose::TestAjouterTrajet ( );
+    TestTrajetCompose::TestRetirerTrajet ( );
+    TestTrajetCompose::TestAfficher ( );
+    TestTrajetCompose::TestGetVilleDepart ( );
+    TestTrajetCompose::TestGetVilleArrivee ( );
 }
 
 
@@ -46,6 +51,66 @@ void TestTrajetCompose::TestConstructeur ( void ) {
     #endif
 
     TrajetCompose trajetCompose;
+}
+
+void TestTrajetCompose::TestAjouterTrajet ( void ) {
+    #ifdef MAP
+    cout << "--- TestAjouterTrajet ---" << endl;
+    #endif
+
+    TrajetCompose trajetCompose;
+    TrajetSimple* trajetSimple = new TrajetSimple("Paris", "Lyon", "TGV");
+
+    trajetCompose.AjouterTrajet(trajetSimple);
+    trajetCompose.AjouterTrajet(new TrajetSimple("Lyon", "Toulouse", "Trotinette"));
+}
+
+void TestTrajetCompose::TestRetirerTrajet ( void ) {
+    #ifdef MAP
+    cout << "--- TestRetirerTrajet ---" << endl;
+    #endif
+
+    TrajetCompose trajetCompose;
+    TrajetSimple* trajetSimple = new TrajetSimple("Paris", "Lyon", "TGV");
+
+    trajetCompose.AjouterTrajet(trajetSimple);
+    trajetCompose.AjouterTrajet(new TrajetSimple("Lyon", "Toulouse", "Trotinette"));
+    trajetCompose.RetirerTrajet();
+}
+
+void TestTrajetCompose::TestAfficher ( void ) {
+    #ifdef MAP
+    cout << "--- TestAfficher ---" << endl;
+    #endif
+
+    TrajetCompose trajetCompose;
+    TrajetSimple* trajetSimple = new TrajetSimple("Paris", "Lyon", "TGV");
+    trajetCompose.AjouterTrajet(trajetSimple);
+    trajetCompose.AjouterTrajet(new TrajetSimple("Lyon", "Toulouse", "Trotinette"));
+
+    trajetCompose.Afficher();
+}
+
+void TestTrajetCompose::TestGetVilleDepart ( void ) {
+    #ifdef MAP
+    cout << "--- TestGetVilleDepart ---" << endl;
+    #endif
+
+    TrajetCompose trajetCompose;
+    trajetCompose.AjouterTrajet(new TrajetSimple("Fes", "Marrakech", "Chameau"));
+    trajetCompose.AjouterTrajet(new TrajetSimple("Marrakech", "Bruxelles", "Soucoupe-volante"));
+    cout << "Ville de départ : " << trajetCompose.GetVilleDepart() << endl;
+}
+
+void TestTrajetCompose::TestGetVilleArrivee( void ) {
+    #ifdef MAP
+    cout << "--- TestGetVilleArrivee ---" << endl;
+    #endif
+
+    TrajetCompose trajetCompose;
+    trajetCompose.AjouterTrajet(new TrajetSimple("Fes", "Marrakech", "Chameau"));
+    trajetCompose.AjouterTrajet(new TrajetSimple("Marrakech", "Bruxelles", "Soucoupe-volante"));
+    cout << "Ville d'arrivée : " << trajetCompose.GetVilleArrivee() << endl;
 }
 
 //-------------------------------------------- Constructeurs - destructeur
