@@ -38,7 +38,9 @@ const char* TrajetCompose::GetVilleArrivee( void ) const {
 }
 
 void TrajetCompose::Afficher( void ) const {
+    cout << "Trajet composé : " << endl;
     listeTrajets.Afficher ( );
+    cout << endl;
 }
 
 void TrajetCompose::AjouterTrajet ( Trajet* nouveauTrajet) {

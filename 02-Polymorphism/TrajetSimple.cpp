@@ -40,7 +40,7 @@ const char* TrajetSimple::GetVilleArrivee( void ) const {
 } // ----- Fin de GetVilleArrivee
 
 void TrajetSimple::Afficher( void ) const {
-    cout << "de " << villeDepart << " à " << villeArrivee << " en "
+    cout << "Trajet de " << villeDepart << " à " << villeArrivee << " en "
         << moyenTransport << endl;
 }
 
