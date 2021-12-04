@@ -36,6 +36,7 @@ public:
   //
   void Afficher( void ) const;
   // ListeChainee Rechercher(const char* VilleDepart, const char* VilleArrivee) const;
+  void Rechercher ( const char* VilleDepart, const char* VilleArrivee) const;
   void Ajouter ( Trajet* );
 
   //-------------------------------------------- Constructeurs - destructeur

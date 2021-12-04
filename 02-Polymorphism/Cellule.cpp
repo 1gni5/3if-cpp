@@ -34,6 +34,10 @@ const Trajet* Cellule::GetValeur ( void ) const {
     return valeur;
 } //------- Fin de GetValeur
 
+const Cellule* Cellule::GetSuivante( void ) const {
+    return suivante;
+} //------- Fin de GetValeur
+
 //-------------------------------------------- Constructeurs - destructeur
 
 Cellule::Cellule ( Trajet* Valeur, Cellule* Suivante )

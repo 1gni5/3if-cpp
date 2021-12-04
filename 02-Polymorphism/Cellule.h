@@ -36,6 +36,7 @@ public:
     //
 
     const Trajet* GetValeur ( void ) const;
+    const Cellule* GetSuivante ( void ) const;
 
 //-------------------------------------------- Constructeurs - destructeur
     Cellule ( Trajet*, Cellule* );

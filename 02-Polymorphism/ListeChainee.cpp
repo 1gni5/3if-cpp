@@ -81,7 +81,7 @@ const Cellule* ListeChainee::GetDebut ( void ) const{
 } //----- Fin de GetDebut
 
 const Cellule* ListeChainee::GetFin ( void ) const{
-    return debut;
+    return fin;
 } //----- Fin de GetFin
 
 void ListeChainee::Afficher ( void ) const {
