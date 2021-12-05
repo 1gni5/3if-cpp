@@ -12,6 +12,7 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
+#include <cstring>
 #include <iostream>
 using namespace std;
 
@@ -47,9 +48,40 @@ void ListeChainee::Ajouter ( Cellule* nouvelleCellule)
         courante = courante->suivante;
     }
 
+    courante = debut;
+    /* cas d'insertion en début de liste avec un nouveau trajet inférieur à celui qui existe */
+    if(!compareAlphabetique(debut->GetValeur(),nouvelleCellule->GetValeur()))
+    {
+        nouvelleCellule->suivante = debut;
+        debut = nouvelleCellule;
+    } 
+    /* la liste a un seul élement */
+    else if( debut->suivante == NULL)
+    {
+        debut->suivante = nouvelleCellule;
+    }
+    /* cas général */
+    else 
+    {
+        const Trajet* t1 = courante->suivante->GetValeur();
+        const Trajet* t2 = nouvelleCellule->GetValeur();
+        while(courante->suivante && compareAlphabetique(t1,t2))
+        {
+            courante = courante->suivante;
+            if(courante->suivante)
+            {
+                t1 = courante->suivante->GetValeur();
+            }
+        }
+        nouvelleCellule->suivante = courante->suivante;
+        courante->suivante = nouvelleCellule;
+    }
+
+    // code à enlever : //
+
     /* Ajoute la cellule en fin de liste */
-    fin->suivante = nouvelleCellule ;
-    fin = nouvelleCellule;
+    // fin->suivante = nouvelleCellule ;
+    // fin = nouvelleCellule;
 } //----- Fin de Ajouter
 
 void ListeChainee::Retirer ( void )
@@ -125,3 +157,22 @@ ListeChainee::~ListeChainee ( void )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Méthodes protégées
+bool ListeChainee::compareAlphabetique ( const Trajet* trajet1, const Trajet* trajet2 ) const
+// Algorithme :
+// Compare par ordre alphabétique les villes de départs entre elles, puis les villes d'arrivée pour chaque ville de départ
+{
+    // compareVilleDepart < 0 si le premier caractère différent a une valeur plus petite dans trajet1->GetVilleDepart() que dans trajet2->GetVilleDepart()
+    int compareVilleDepart = strcmp(trajet1->GetVilleDepart(), trajet2->GetVilleDepart());
+    // pareil
+    int compareVilleArrivee = strcmp(trajet1->GetVilleArrivee(), trajet2->GetVilleArrivee());
+    if( compareVilleDepart < 0)
+    {
+        return true;
+    }
+    if(compareVilleDepart == 0 && compareVilleArrivee < 0)
+    {
+        return true;
+    }
+    return false;
+} // ----- Fin de compareAlphabetique

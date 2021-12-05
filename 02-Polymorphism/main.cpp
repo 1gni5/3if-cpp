@@ -11,7 +11,7 @@ void AfficherMenu()
   cout << "Voici le menu du projet, veuillez choisir un numéro : " << endl; 
   cout << "\t1. Afficher le catalogue " << endl \
     << "\t2. Ajouter un trajet simple " << endl \
-    << "\t3. Ajouter un trajet composée " << endl\
+    << "\t3. Ajouter un trajet composé " << endl\
     << "\t4. Rechercher un trajet " << endl\
     << "\t5. Quitter le menu" << endl;
 }

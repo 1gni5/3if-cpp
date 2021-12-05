@@ -37,6 +37,8 @@ void Catalogue::Afficher (void) const {
   cout << "----- Fin du catalogue -------" << endl << endl;
 }
 
+// code à effacer : 
+
 // ListeChainee Catalogue::Rechercher(const char* VilleDepart, const char* VilleArrivee)
 // {
 //   ListeChainee trajetsRecherches;
@@ -79,7 +81,6 @@ void Catalogue::Rechercher ( const char* VilleDepart, const char* VilleArrivee) 
 
 void Catalogue::Ajouter( Trajet* trajet) {
   listeTrajets.Ajouter(new Cellule(trajet, NULL));
-  // TODO: Faire une insertion triée
 }
 
 //-------------------------------------------- Constructeurs - destructeur

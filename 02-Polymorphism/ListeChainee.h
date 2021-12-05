@@ -52,7 +52,8 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-
+    bool compareAlphabetique ( const Trajet* t1, const Trajet* t2 ) const;
+    
 //----------------------------------------------------- Attributs protégés
     Cellule* debut;
     Cellule* fin;
