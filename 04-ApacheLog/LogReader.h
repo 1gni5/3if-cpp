@@ -5,7 +5,7 @@
 #include <sstream>
 using namespace std;
 
-const string BASE_URL;
+const string BASE_URL = "intranet-if.insa-lyon.fr";
 
 string& StripBaseURL(string& url, string base);
 string& TrimTrailingSlash(string& url);
