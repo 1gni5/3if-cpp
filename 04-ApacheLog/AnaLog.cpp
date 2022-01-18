@@ -8,10 +8,13 @@ using namespace std;
 #include "LogReader.h"
 
 const size_t LIMIT_TOP_HITS = 10;
+const string BANNED_EXTENTIONS[] = {"jpg", "js", "css"};
 
 typedef unordered_map<size_t, size_t> node;
 typedef unordered_map<size_t, node> Graph;
 typedef map<size_t, size_t> Hits;
+
+bool isValidURL(string& url, const string[]);
 
 typedef struct KeyStore {
 	unordered_map<string, size_t> store;
@@ -66,8 +69,16 @@ int main(int argc, char* argv[])
 	KeyStore ks = KeyStore();
 	Graph logGraph;
 	Hits totalHits;
+
 	while (!reader.eof())
 	{
+		// Vérifie si l'URL doit-être prit en compte
+		if (!isValidURL(current.target, BANNED_EXTENTIONS))
+		{
+			current = reader.GetNextLog();
+			continue;
+		}
+
 		// Récupère les clés des urls
 		auto targetKey = ks.GetKey(current.target);
 		auto originKey = ks.GetKey(current.origin);
@@ -120,4 +131,26 @@ int main(int argc, char* argv[])
 	}
 
 	return 0;
+}
+
+
+bool isValidURL(string& url, const string bannedExtentions[])
+{
+	// Découpe l'url en tokens
+	stringstream ss(url);
+	string tmp;
+	vector<string> tokens;
+	
+	while (!ss.eof())
+	{
+		getline(ss, tmp, '.');
+		tokens.push_back(tmp);
+	}
+
+	for (const auto& extention : BANNED_EXTENTIONS)
+	{
+		if (tokens.back() == extention) return false;
+	}
+	
+	return true;
 }
