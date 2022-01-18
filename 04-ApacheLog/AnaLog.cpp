@@ -1,9 +1,13 @@
 #include <iostream>
 #include <unordered_map>
 #include <map>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 #include "LogReader.h"
+
+const size_t LIMIT_TOP_HITS = 10;
 
 typedef unordered_map<size_t, size_t> node;
 typedef unordered_map<size_t, node> Graph;
@@ -27,6 +31,16 @@ typedef struct KeyStore {
 			store[url] = seed;
 			return seed++;
 		}
+	};
+	inline string reverseFind(size_t key)
+	{
+		for (const auto& item : store)
+		{
+			if (item.second == key) 
+				return item.first;
+		}
+
+		return "";
 	};
 } KeyStore;
 
@@ -81,11 +95,28 @@ int main(int argc, char* argv[])
 			totalHits[targetKey] = 1;
 		}
 
-		cout << "Cible: " << current.target << endl;
-		cout << "Clé: " << targetKey << endl;
-		cout << "Nb hits: " << totalHits[targetKey] << endl;
-
 		current = reader.GetNextLog();
+	}
+
+	// Construction du top 10.
+	vector<pair<size_t, size_t>> top;
+	for (const auto& item : totalHits)
+	{
+		top.emplace_back(item);
+	}
+	
+	// Tri les éléments sur le nombre de hits
+	sort(top.begin(), top.end(), 
+		[] (const auto& a, const auto&b) {return a.second > b.second;}
+	);
+	
+	// Ne conserve que les 10 premiers éléments
+	size_t offset = min(LIMIT_TOP_HITS, top.size());
+	vector<pair<size_t, size_t>> top10 = {top.begin(), top.begin() + offset};
+
+	for (const auto& item : top10)
+	{
+		cout << "[" << item.second << ": " << ks.reverseFind(item.first) << "]" << endl;
 	}
 
 	return 0;
