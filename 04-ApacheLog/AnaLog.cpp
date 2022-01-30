@@ -3,6 +3,7 @@
 #include <map>
 #include <vector>
 #include <algorithm>
+#include <fstream>
 using namespace std;
 
 #include "LogReader.h"
@@ -46,6 +47,8 @@ typedef struct KeyStore {
 		return "";
 	};
 } KeyStore;
+
+void exportDigraph(Graph& graph, Hits& hits, KeyStore& ks, ofstream& outFile);
 
 int main(int argc, char* argv[])
 {
@@ -130,6 +133,19 @@ int main(int argc, char* argv[])
 		cout << "[" << item.second << ": " << ks.reverseFind(item.first) << "]" << endl;
 	}
 
+	ofstream outFile;
+	outFile.open("graph.dot");
+
+	if (!outFile)
+	{
+		cerr << "Erreur lors de l'ouverture du fichier" << endl;
+	} else
+	{
+	
+		exportDigraph(logGraph, totalHits, ks, outFile);
+		outFile.close();
+	}
+
 	return 0;
 }
 
@@ -153,4 +169,31 @@ bool isValidURL(string& url, const string bannedExtentions[])
 	}
 	
 	return true;
+}
+
+void exportDigraph(Graph& graph, Hits& hits, KeyStore& ks, ofstream& outFile)
+{
+	if (!outFile)
+	{
+		cout << "Impossible d'ouvrir le fichier." << endl;
+		return;
+	}
+
+	outFile << "digraph {" << endl;
+	// Parcours le graphe pour lister les nodes
+	for (const auto &keyPair : ks.store)
+	{
+		outFile << "node" << keyPair.second << " [label=\"" 
+		<< keyPair.first << "\"];" << endl;
+	}
+	// Parcours le graphe pour lister le détails des relations
+	for (const auto &hits : graph)
+	{
+		for (const auto &keyPair : hits.second)
+		{
+			outFile << "node" << hits.first << " -> " << "node" << keyPair.first
+			<< " [label=\"" << keyPair.second << "\"];" << endl;
+		}
+	}
+	outFile << "}" << endl;
 }
