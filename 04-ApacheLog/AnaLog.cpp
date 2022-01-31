@@ -36,6 +36,7 @@ typedef struct KeyStore {
 			return seed++;
 		}
 	};
+
 	inline string reverseFind(size_t key)
 	{
 		for (const auto& item : store)
@@ -55,17 +56,83 @@ int main(int argc, char* argv[])
 	// Vérification du nombre minimum d'arguments
 	if (argc < 2)
 	{
-		cout << "Usage " << argv[0] << " fichier.log" << endl;
+		cerr << "Usage " << argv[0] << " fichier.log" << endl;
 		return 1;
 	}
 
-	LogReader reader(argv[1]);
+	// Récupère le fichier de log
+	LogReader reader(argv[argc - 1]);
 	
-	// Vérification du fichier
-	if (!reader.is_open())
+	// Vérifie que le fichier est valide
+	if (!reader)
 	{
-		cout << "Une erreur s'est produite lors de l'ouverture du fichier." << endl;
+		cerr << "Une erreur s'est produite lors de l'ouverture du fichier." << endl;
 		return 1;
+	}
+
+	// Parcours des options
+	bool gFlag = false;
+	bool eFlag = false;
+	bool tFlag = false;
+
+	// Variable d'options
+	string graphFilename;
+	int referenceHour = 0;
+
+	int nbOptions = argc - 1;
+	int argi = 1;
+
+	while (argi < nbOptions)
+	{
+		// Récupère l'argument
+		string arg = string(argv[argi]);
+
+		// Traite les différentes options
+		if (arg == "-g")
+		{
+			gFlag = true;
+
+			// Vérifie que le nombre d'option est valide
+			if (++argi >= nbOptions)
+			{
+				cerr << "nom de fichier manquant." << endl;
+				return 1;
+			}
+			
+			// Récupère le nom du fichier de graphe
+			graphFilename = string(argv[argi++]);
+
+		} else if (arg == "-e")
+		{
+			eFlag = true;
+		} else if (arg == "-t")
+		{
+			cout << "Option -t" << endl;
+			tFlag = true;
+
+			// Vérifie que le nombre d'option est valide.
+			if (++argi >= nbOptions)
+			{
+				cerr << "Heure manquante." << endl;
+				return 1;
+			}
+			
+			referenceHour = atoi(argv[argi++]);
+			
+			// Vérifie que l'heure est valide
+			if (referenceHour < 1 || referenceHour > 23)
+			{
+				cerr << "Heure invalide." << endl;
+				return 1;
+			}
+
+		} else 
+		{
+			cerr << "Option inconnue." << endl;
+			return 1;
+		}
+
+		argi++;
 	}
 
 	log current = reader.GetNextLog();
@@ -76,18 +143,7 @@ int main(int argc, char* argv[])
 	while (!reader.eof())
 	{
 		// Vérifie si l'URL doit-être prit en compte
-		if (!isValidURL(current.target, BANNED_EXTENTIONS))
-		{
-			current = reader.GetNextLog();
-			continue;
-		}
-
-		// Vérifie si l'heure est correcte
-		datetime refBegin("08/Sep/2012:11:16:07 +0200");
-		datetime refEnd = refBegin;
-		refEnd.hour = (refEnd.hour + 1) % 24;
-
-		if (refEnd < current.date && current.date < refBegin)
+		if (eFlag && !isValidURL(current.target, BANNED_EXTENTIONS))
 		{
 			current = reader.GetNextLog();
 			continue;
@@ -141,20 +197,24 @@ int main(int argc, char* argv[])
 
 	for (const auto& item : top10)
 	{
-		cout << "[" << item.second << ": " << ks.reverseFind(item.first) << "]" << endl;
+		cout << "[" << item.second << " hit(s) : " 
+		<< ks.reverseFind(item.first) << "]" << endl;
 	}
 
-	ofstream outFile;
-	outFile.open("graph.dot");
+	if (gFlag)
+	{
+		// Output to graph file
+		ofstream graphFile;
+		graphFile.open(graphFilename);
 
-	if (!outFile)
-	{
-		cerr << "Erreur lors de l'ouverture du fichier" << endl;
-	} else
-	{
-	
-		exportDigraph(logGraph, totalHits, ks, outFile);
-		outFile.close();
+		if (!graphFile)
+		{
+			cerr << "Erreur lors de l'ouverture du fichier" << endl;
+		} else
+		{
+			exportDigraph(logGraph, totalHits, ks, graphFile);
+			graphFile.close();
+		}
 	}
 
 	return 0;
