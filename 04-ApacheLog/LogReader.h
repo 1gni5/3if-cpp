@@ -60,18 +60,6 @@ typedef struct datetime {
 		getline(ss, tmp, '\0');
 		tmz = atoi(tmp.c_str());
 	};
-
-	inline bool operator< (const datetime& date)
-	{
-		if (year < date.year) return true;
-		// if (month < date.month) return true;
-		if (day < date.day) return true;
-		if (hour < date.hour) return true;
-		if (minute < date.minute) return true;
-		if (second < date.second) return true;
-		return false;
-	};
-
 } datetime;
 
 ostream& operator<< (ostream& os, const datetime& date);
