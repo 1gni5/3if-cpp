@@ -82,6 +82,17 @@ int main(int argc, char* argv[])
 			continue;
 		}
 
+		// Vérifie si l'heure est correcte
+		datetime refBegin("08/Sep/2012:11:16:07 +0200");
+		datetime refEnd = refBegin;
+		refEnd.hour = (refEnd.hour + 1) % 24;
+
+		if (refEnd < current.date && current.date < refBegin)
+		{
+			current = reader.GetNextLog();
+			continue;
+		}
+
 		// Récupère les clés des urls
 		auto targetKey = ks.GetKey(current.target);
 		auto originKey = ks.GetKey(current.origin);
