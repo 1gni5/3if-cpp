@@ -2,6 +2,7 @@
 #define LOGREADER_H
 
 #include <fstream>
+#include <iostream>
 #include <sstream>
 using namespace std;
 
@@ -10,11 +11,76 @@ const string BASE_URL = "intranet-if.insa-lyon.fr";
 string& StripBaseURL(string& url, string base);
 string& TrimTrailingSlash(string& url);
 
+typedef struct datetime {
+	size_t day;
+	string month;
+	size_t year;
+	
+	size_t hour;
+	size_t minute;
+	size_t second;
+
+	size_t tmz;
+
+	inline datetime()
+	{
+		day = 01;
+		month = "Jan";
+		year = 1997;
+
+		hour = 00;
+		minute = 00;
+		second = 00;
+
+		tmz = +00;
+	};
+
+	inline datetime(string src)
+	{
+		stringstream ss(src);
+		string tmp;
+
+		getline(ss, tmp, '/');
+		day = atoi(tmp.c_str());
+
+		getline(ss, month, '/');
+
+		getline(ss, tmp, ':');
+		year = atoi(tmp.c_str());
+
+		getline(ss, tmp, ':');
+		hour = atoi(tmp.c_str());
+
+		getline(ss, tmp, ':');
+		minute = atoi(tmp.c_str());
+		
+		getline(ss, tmp, ' ');
+		second = atoi(tmp.c_str());
+
+		getline(ss, tmp, '\0');
+		tmz = atoi(tmp.c_str());
+	};
+
+	inline bool operator< (const datetime& date)
+	{
+		if (year < date.year) return true;
+		// if (month < date.month) return true;
+		if (day < date.day) return true;
+		if (hour < date.hour) return true;
+		if (minute < date.minute) return true;
+		if (second < date.second) return true;
+		return false;
+	};
+
+} datetime;
+
+ostream& operator<< (ostream& os, const datetime& date);
+
 typedef struct log {
 	string ip;
 	string username;
 	string authname;
-	string date;
+	datetime date;
 	string verb;
 	string origin;
 	string http_version;
@@ -33,8 +99,8 @@ typedef struct log {
 		getline(ss, authname, ' ');
 
 		getline(ss, tmp, '[');
-		getline(ss, date, ']');
-		// date(tmp);
+		getline(ss, tmp, ']');
+		date = datetime(tmp);
 
 		getline(ss, tmp, '\"');
 		getline(ss, verb, ' ');

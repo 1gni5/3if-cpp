@@ -33,3 +33,9 @@ string& TrimTrailingSlash(string& url)
 	
 	return url;
 }
+
+ostream& operator<< (ostream& os, const datetime& date)
+{
+	os << date.hour << ":" << date.minute << ":" << date.second;
+	return os;
+}
