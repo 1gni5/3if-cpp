@@ -17,6 +17,7 @@ typedef unordered_map<size_t, node> Graph;
 typedef map<size_t, size_t> Hits;
 
 bool isValidURL(string& url, const string[]);
+bool isValidRequest(log& l);
 
 typedef struct KeyStore {
 	unordered_map<string, size_t> store;
@@ -151,8 +152,6 @@ int main(int argc, char* argv[])
 
 	getline(configFile, baseURL);	
 
-	cout << "URL de base : " << baseURL << endl;
-
 	log current = reader.GetNextLog();
 	KeyStore ks = KeyStore();
 	Graph logGraph;
@@ -170,7 +169,13 @@ int main(int argc, char* argv[])
 		// Vérifie que la tranche horaire est correct
 		if (tFlag && !(referenceHour <= current.date.hour && current.date.hour < (referenceHour + 1)))
 		{
-			cout << "Skipping: " << current.date.hour << endl;
+			current = reader.GetNextLog();
+			continue;
+		}
+
+		// Vérifie que la requêtes était valide
+		if (!isValidRequest(current))
+		{
 			current = reader.GetNextLog();
 			continue;
 		}
@@ -296,4 +301,9 @@ void exportDigraph(Graph& graph, Hits& hits, KeyStore& ks, ofstream& outFile)
 		}
 	}
 	outFile << "}" << endl;
+}
+
+inline bool isValidRequest(log& l)
+{
+	return l.ret_code == "200";
 }
