@@ -76,6 +76,7 @@ int main(int argc, char* argv[])
 	bool gFlag = false;
 	bool eFlag = false;
 	bool tFlag = false;
+	bool iFlag = false;
 
 	// Variable d'options
 	string graphFilename;
@@ -107,6 +108,9 @@ int main(int argc, char* argv[])
 		} else if (arg == "-e")
 		{
 			eFlag = true;
+		} else if (arg == "-i")
+		{
+			iFlag = true;
 		} else if (arg == "-t")
 		{
 			tFlag = true;
@@ -174,7 +178,7 @@ int main(int argc, char* argv[])
 		}
 
 		// Vérifie que la requêtes était valide
-		if (!isValidRequest(current))
+		if (iFlag && !isValidRequest(current))
 		{
 			current = reader.GetNextLog();
 			continue;
@@ -305,5 +309,8 @@ void exportDigraph(Graph& graph, Hits& hits, KeyStore& ks, ofstream& outFile)
 
 inline bool isValidRequest(log& l)
 {
-	return l.ret_code == "200";
+	// Code de retour invalide
+	if (l.ret_code.length() < 3) return false;
+	if (l.ret_code[0] == '4' || l.ret_code[0] == '5') return false;
+	return true;
 }
