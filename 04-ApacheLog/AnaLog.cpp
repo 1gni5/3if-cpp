@@ -10,6 +10,7 @@ using namespace std;
 
 const size_t LIMIT_TOP_HITS = 10;
 const string BANNED_EXTENTIONS[] = {"jpg", "js", "css"};
+const string CONFIGURATION_FILNAME = ".analog";
 
 typedef unordered_map<size_t, size_t> node;
 typedef unordered_map<size_t, node> Graph;
@@ -134,6 +135,24 @@ int main(int argc, char* argv[])
 		argi++;
 	}
 
+	// Variable de configuration
+	string baseURL = "insa-lyon.fr";
+
+	// Récupère le fichier de configuration
+	ifstream configFile;
+	configFile.open(CONFIGURATION_FILNAME);
+
+	// Fichier de configuration illisible
+	if (!configFile)
+	{
+		cerr << "Fichier de configuration invalide" << endl;
+		return 1;
+	}
+
+	getline(configFile, baseURL);	
+
+	cout << "URL de base : " << baseURL << endl;
+
 	log current = reader.GetNextLog();
 	KeyStore ks = KeyStore();
 	Graph logGraph;
@@ -155,6 +174,9 @@ int main(int argc, char* argv[])
 			current = reader.GetNextLog();
 			continue;
 		}
+
+		// Retire l'url de base
+		StripBaseURL(current.target, baseURL);
 
 		// Récupère les clés des urls
 		auto targetKey = ks.GetKey(current.target);

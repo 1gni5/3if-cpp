@@ -17,7 +17,7 @@ string& StripBaseURL(string& url, string base)
 	// Url de base présente
 	if (position != string::npos)
 	{
-		url = url.substr(position + BASE_URL.length());
+		url = url.substr(position + base.length());
 	}
 	return url;
 }

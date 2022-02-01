@@ -104,7 +104,6 @@ typedef struct log {
 
 		getline(ss, tmp, '\"');
 		getline(ss, target, '\"');
-		StripBaseURL(target, BASE_URL);
 		TrimTrailingSlash(target);
 
 		getline(ss, tmp, ' ');
