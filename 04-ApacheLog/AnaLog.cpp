@@ -107,7 +107,6 @@ int main(int argc, char* argv[])
 			eFlag = true;
 		} else if (arg == "-t")
 		{
-			cout << "Option -t" << endl;
 			tFlag = true;
 
 			// Vérifie que le nombre d'option est valide.
@@ -145,6 +144,14 @@ int main(int argc, char* argv[])
 		// Vérifie si l'URL doit-être prit en compte
 		if (eFlag && !isValidURL(current.target, BANNED_EXTENTIONS))
 		{
+			current = reader.GetNextLog();
+			continue;
+		}
+
+		// Vérifie que la tranche horaire est correct
+		if (tFlag && !(referenceHour <= current.date.hour && current.date.hour < (referenceHour + 1)))
+		{
+			cout << "Skipping: " << current.date.hour << endl;
 			current = reader.GetNextLog();
 			continue;
 		}
