@@ -1,6 +1,6 @@
 CXX = g++
-CXXFLAGS = -O2 -std=c++11
-SOURCES = AnaLog.cpp LogReader.cpp 
+CXXFLAGS = -std=c++11
+SOURCES = src/AnaLog.cpp src/LogReader.cpp 
 OBJECTS = $(subst .cpp,.o, $(SOURCES))
 EXEC = bin/program
 
@@ -15,5 +15,7 @@ $(EXEC): $(OBJECTS)
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+setup:
+	mkdir -pv bin/
 clean:
 	rm -f $(OBJECTS) $(EXEC)
