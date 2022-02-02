@@ -103,7 +103,7 @@ int main(int argc, char* argv[])
 			}
 			
 			// Récupère le nom du fichier de graphe
-			graphFilename = string(argv[argi++]);
+			graphFilename = string(argv[argi]);
 
 		} else if (arg == "-e")
 		{
@@ -122,7 +122,7 @@ int main(int argc, char* argv[])
 				return 1;
 			}
 			
-			referenceHour = atoi(argv[argi++]);
+			referenceHour = atoi(argv[argi]);
 			
 			// Vérifie que l'heure est valide
 			if (string(argv[argi-1]) != "0" && (referenceHour <= 0 || referenceHour > 23))
