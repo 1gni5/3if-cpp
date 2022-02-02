@@ -9,7 +9,7 @@ using namespace std;
 #include "LogReader.h"
 
 const size_t LIMIT_TOP_HITS = 10;
-const string BANNED_EXTENTIONS[] = {"jpg", "js", "css"};
+const string BANNED_EXTENTIONS[] = {"jpg", "js", "css", "png", "ics"};
 const string CONFIGURATION_FILNAME = ".analog";
 
 typedef unordered_map<size_t, size_t> node;
@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
 	// Vérification du nombre minimum d'arguments
 	if (argc < 2)
 	{
-		cerr << "Usage " << argv[0] << " fichier.log" << endl;
+		cerr << "Fichier de log invalide ou inexistant." << endl;
 		return 1;
 	}
 
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 	// Vérifie que le fichier est valide
 	if (!reader)
 	{
-		cerr << "Une erreur s'est produite lors de l'ouverture du fichier." << endl;
+		cerr << "Fichier de log invalide ou inexistant." << endl;
 		return 1;
 	}
 
@@ -98,7 +98,7 @@ int main(int argc, char* argv[])
 			// Vérifie que le nombre d'option est valide
 			if (++argi >= nbOptions)
 			{
-				cerr << "nom de fichier manquant." << endl;
+				cerr << "Option -g : Fichier de graphe invalide ou manquant." << endl;
 				return 1;
 			}
 			
@@ -118,16 +118,16 @@ int main(int argc, char* argv[])
 			// Vérifie que le nombre d'option est valide.
 			if (++argi >= nbOptions)
 			{
-				cerr << "Heure manquante." << endl;
+				cerr << "Option -t : Heure manquante." << endl;
 				return 1;
 			}
 			
 			referenceHour = atoi(argv[argi++]);
 			
 			// Vérifie que l'heure est valide
-			if (referenceHour < 1 || referenceHour > 23)
+			if (string(argv[argi-1]) != "0" && (referenceHour <= 0 || referenceHour > 23))
 			{
-				cerr << "Heure invalide." << endl;
+				cerr << "Option -t : Heure invalide." << endl;
 				return 1;
 			}
 
@@ -217,31 +217,34 @@ int main(int argc, char* argv[])
 		current = reader.GetNextLog();
 	}
 
-	// Construction du top 10.
-	vector<pair<size_t, size_t>> top;
-	for (const auto& item : totalHits)
+	// Si le flag -g est activé, désactive la création du top10
+	if (!gFlag)
 	{
-		top.emplace_back(item);
-	}
-	
-	// Tri les éléments sur le nombre de hits
-	sort(top.begin(), top.end(), 
-		[] (const auto& a, const auto&b) {return a.second > b.second;}
-	);
-	
-	// Ne conserve que les 10 premiers éléments
-	size_t offset = min(LIMIT_TOP_HITS, top.size());
-	vector<pair<size_t, size_t>> top10 = {top.begin(), top.begin() + offset};
+		// Construction du top 10.
+		vector<pair<size_t, size_t>> top;
+		for (const auto& item : totalHits)
+		{
+			top.emplace_back(item);
+		}
+		
+		// Tri les éléments sur le nombre de hits
+		sort(top.begin(), top.end(), 
+//			[] (const auto& a, const auto&b) {return a.second > b.second;}
+			[] (const pair<size_t,size_t>& a, const pair<size_t,size_t>&b) {return a.second > b.second;}
+		);
+		
+		// Ne conserve que les 10 premiers éléments
+		size_t offset = min(LIMIT_TOP_HITS, top.size());
+		vector<pair<size_t, size_t>> top10 = {top.begin(), top.begin() + offset};
 
-	for (const auto& item : top10)
+		for (const auto& item : top10)
+		{
+			cout << "[" << item.second << " hit(s) : " 
+			<< ks.reverseFind(item.first) << "]" << endl;
+		}
+	} else
+	// Génère un fichier de graphe
 	{
-		cout << "[" << item.second << " hit(s) : " 
-		<< ks.reverseFind(item.first) << "]" << endl;
-	}
-
-	if (gFlag)
-	{
-		// Output to graph file
 		ofstream graphFile;
 		graphFile.open(graphFilename);
 
