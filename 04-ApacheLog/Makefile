@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -O2
+CXXFLAGS = -O2 -std=c++11
 SOURCES = AnaLog.cpp LogReader.cpp 
 OBJECTS = $(subst .cpp,.o, $(SOURCES))
 EXEC = bin/program
