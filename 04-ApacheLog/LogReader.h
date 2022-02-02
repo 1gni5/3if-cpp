@@ -92,8 +92,8 @@ typedef struct log {
 
 		getline(ss, tmp, '\"');
 		getline(ss, verb, ' ');
-		getline(ss, origin, ' ');
-		TrimTrailingSlash(origin);
+		getline(ss, target, ' ');
+		TrimTrailingSlash(target);
 	
 		getline(ss, http_version, '\"');
 
@@ -103,8 +103,8 @@ typedef struct log {
 		getline(ss, download_size, ' ');
 
 		getline(ss, tmp, '\"');
-		getline(ss, target, '\"');
-		TrimTrailingSlash(target);
+		getline(ss, origin, '\"');
+		TrimTrailingSlash(origin);
 
 		getline(ss, tmp, ' ');
 		getline(ss, user_agent, '\n');
